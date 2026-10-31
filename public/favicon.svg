@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">F1 Intelligence — ícone</title>
+  <g fill="#FF1738">
+    <path d="M115 120H360L317 178H73L91 151Q101 135 115 120Z"/>
+    <path d="M72 207H297L253 265H120L82 315H20L91 222Q100 210 72 207Z" opacity="0"/>
+    <path d="M75 207H295L252 265H126L86 317H20L81 230Q91 215 105 207Z"/>
+    <path d="M382 120H487L339 317H234L382 120Z"/>
+  </g>
+</svg>

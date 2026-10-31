@@ -1,0 +1,48 @@
+/* 1. Melhora o cálculo de tamanho dos elementos (evita que o padding quebre o layout) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove as margens e preenchimentos padrões dos navegadores */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Permite que a altura da página responda corretamente a layouts em porcentagem */
+html, body {
+  height: 100%;
+}
+
+/* Evita barra de rolagem horizontal causada por elementos que escapam do viewport em mobile */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 4. Melhora a altura de linha e a renderização das fontes */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Evita que imagens e mídias estourem o tamanho dos seus containers */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Faz com que formulários herdem a fonte definida no body */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Evita que textos longos quebrem o layout em elementos de texto */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Cria o contexto de renderização raiz para frameworks modernos (React, Vue, Next, etc.) */
+#root, #__next {
+  isolation: isolate;
+}
