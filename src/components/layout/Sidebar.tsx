@@ -5,7 +5,7 @@ export default function Sidebar() {
     return (
         <aside className="sidebar">
             <div className="logo">
-                <img src="/assets/logoF1Intelligence.png" alt="Logo F1 Inteligencia" height={100} />
+                <img src="/assets/logoF1Intelligence.png" alt="Logo F1 Inteligencia" height={80} />
             </div>
 
             <nav className="menus">
