@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import '../../styles/home/Campeonato.css';
 
 export default function Campeonato() {
     const pilotos = [
@@ -25,46 +26,147 @@ export default function Campeonato() {
                     <p>Classificação de pilotos e construtores.</p>
                 </div>
 
-                <div className="btnTopoCampeonato">
-                    <a href="#">Ver classificação completa</a>
+                <div className="containerlinkTopoCampeonato">
+                    <a href="#" className="linkTopoCampeonato">
+                        Ver classificação completa
+                        <ArrowRight size={20} />
+                    </a>
                 </div>
             </div>
 
             <div className="conteudoCampeonato">
                 <div className="campeonatos">
-                    <div className="cardCampeonatoPilotos">
+                    <div className="cardCampeonato">
                         <div className="cardCampeonatoTopo">
                             <h3>Pilotos</h3>
-                            <ArrowRight size={20} />
+                            <ArrowRight size={30} />
                         </div>
-                        <ul className="cardCampeonatoLista">
-                            {pilotos.map((piloto) => (
-                                <li key={piloto.id}>
-                                    <span>{piloto.posicao}</span> 
-                                    <img src={piloto.foto} alt={piloto.nome} height={60} />
-                                    {piloto.nome} - {piloto.pontos} pontos
-                                </li>
-                            ))}
-                        </ul>
+
+                        <table className="tabelaCampeonato">
+                            <thead className="tabelaCampeonatoHead">
+                                <tr>
+                                    <th scope="col">Pos</th>
+                                    <th scope="col">Piloto</th>
+                                    <th scope="col">Equipe</th>
+                                    <th scope="col">Pontos</th>
+                                </tr>
+                            </thead>
+                            <tbody className="tabelaCampeonatoBody">
+                                {pilotos.map((piloto) => (
+                                    <tr key={piloto.id}>
+                                        <td className="posicaoTd">{piloto.posicao}</td>
+                                        <td className="infoTd">
+                                            <div className="infoTd">
+                                                <img src={piloto.foto} alt={piloto.nome} />
+                                                <span>{piloto.nome}</span>
+                                            </div>
+                                        </td>
+                                        <td>{piloto.equipe}</td>
+                                        <td>{piloto.pontos}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div className="cardCampeonatoConstrutores">
+                    <div className="cardCampeonato">
                         <div className="cardCampeonatoTopo">
                             <h3>Construtores</h3>
-                            <ArrowRight size={20} />
+                            <ArrowRight size={30} />
                         </div>
-                        <ul className="cardCampeonatoLista">
-                            {construtores.map((construtor) => (
-                                <li key={construtor.id}>
-                                    <span>{construtor.posicao}</span> 
-                                    <img src={construtor.logo} alt={construtor.equipe} height={50} />
-                                    {construtor.equipe} - {construtor.pontos} pontos
+
+                        <table className="tabelaCampeonato">
+                            <thead className="tabelaCampeonatoHead">
+                                <tr>
+                                    <th scope="col">Pos</th>
+                                    <th scope="col">Equipe</th>
+                                    <th scope="col">Pontos</th>
+                                </tr>
+                            </thead>
+                            <tbody className="tabelaCampeonatoBody">
+                                {construtores.map((construtor) => (
+                                    <tr key={construtor.id}>
+                                        <td>{construtor.posicao}</td>
+                                        <td className="infoTd">
+                                            <img src={construtor.logo} alt={construtor.equipe} />
+                                            {construtor.equipe}
+                                        </td>
+                                        <td>{construtor.pontos}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div className="containerUltimaCorrida">
+                    <div className="cardUltimaCorrida">
+                        <div className="infosUltimaCorrida">
+                            <h3>Última corrida</h3>
+                            <div className="detalhesUltimaCorrida">
+                                <img src="/assets/images/bandeiras/abuDhabi.png" alt="" height={50} />
+                                <div className="infosDetalhesUltimaCorrida">
+                                    <h4>GP de Abu Dhabi</h4>
+                                    <p>Yas Marina - 05 - 07 DEZ 2025</p>
+                                </div>
+                            </div>
+                            <a href="" className="linkUltimaCorrida">
+                                Ver análise completa
+                                <ArrowRight size={20} />
+                            </a>
+                        </div>
+
+                        <div className="resultadosUltimaCorrida">
+                            <h4>Resultado</h4>
+                            <ul>
+                                <li className="resultadoPiloto">
+                                    <div>
+                                        <p>1</p>
+                                        <img src="/assets/images/pilotos/maxVerstappen.png" alt="" height={50} />
+                                        <div>
+                                            <h5>M. Verstappen</h5>
+                                        </div>
+                                    </div>
+                                    <span>1:26:07.469</span>
                                 </li>
-                            ))}
-                        </ul>
+                                <li className="resultadoPiloto">
+                                    <div>
+                                        <p>2</p>
+                                        <img src="/assets/images/pilotos/oscarPiastri.png" alt="" height={50} />
+                                        <div>
+                                            <h5>O. Piastri</h5>
+                                        </div>
+                                    </div>
+                                    <span>+12.594</span>
+                                </li>
+                                <li className="resultadoPiloto">
+                                    <div>
+                                        <p>3</p>
+                                        <img src="/assets/images/pilotos/landoNorris.png" alt="" height={50} />
+                                        <div>
+                                            <h5>L. Norris</h5>
+                                        </div>
+                                    </div>
+                                    <span>+16.572</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="cardVoltaRapida">
+                        <h3>Melhor volta da corrida</h3>
+                        <div className="infosVoltaRapida">
+                            <img src="/assets/images/pilotos/charlesLeclerc.png" alt="" height={50} />
+                            <div>
+                                <h4>Charles Leclerc</h4>
+                                <p>McLaren</p>
+                            </div>
+                        </div>
+                        <p className="tempoVoltaRapida">1:26.725</p>
+                        <p className="infosVoltaComposto">Volta 45 - Composto Médio</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
