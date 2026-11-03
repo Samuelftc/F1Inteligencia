@@ -1,0 +1,155 @@
+.corridasHome {
+    padding: 20px;
+}
+
+.topoCorridas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tituloCorridas {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #c2c6c9;
+}
+
+.infosTopoCorridas p {
+    color: #5b5f67;
+    font-size: 18px;
+}
+
+.linkTopoCorridas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    gap: 15px;
+    padding: 10px 20px;
+    color: #cb1728;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.linkTopoCorridas:hover {
+    text-decoration: underline;
+}
+
+.cardCorrida {
+    border: 1px solid #5b5f679f;
+    padding: 20px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.cardCorrida a {
+    color: #c2c6c9;
+    text-decoration: none;
+}
+
+.topoCardCorrida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topoCardCorrida div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ordemCorrida {
+    font-size: 24px;
+    color: #fff;
+}
+
+.topoCardCorrida div p {
+    font-size: 18px;
+    color: #b0b5be;
+}
+
+.mainCardCorrida {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bandeiraCorrida {
+    border-radius: 10px;
+}
+
+.nomeGrandePremio {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nomeCircuito {
+    font-size: 18px;
+}
+
+.circuitoCardCorrida {
+    margin-top: 30px;
+}
+
+/* SWIPER */
+
+/* Ações do cabeçalho */
+
+.acoesTopoCorridas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.navegacaoCorridas {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Estilo dos botões */
+
+.btnCorridaAnterior,
+.btnProximaCorrida {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #0b131b;
+    color: #c2c6c9;
+
+    border: 1px solid #1f2a33;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+
+.btnCorridaAnterior:hover:not(:disabled),
+.btnProximaCorrida:hover:not(:disabled) {
+    background-color: #cb1728;
+    border-color: #cb1728;
+    color: #fff;
+}
+
+/* Botões desabilitados */
+
+.navegacaoCorridas .swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
