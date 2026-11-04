@@ -1,0 +1,51 @@
+.homeCTA {
+    padding: 20px;
+}
+
+.divHomeCTA {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-image: linear-gradient(to right, #00000093 0%, #000000ad 5%, #040a11 100%), url('/assets/bannerCTA.png');
+    background-position: center;
+    background-size: cover;
+    border: 1px solid #5b5f6742;
+    border-radius: 10px;
+}
+
+.tituloCTA h2 {
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.tituloCTA h2 span {
+    color: #ec1e36;
+}
+
+.descCTA p {
+    font-size: 20px;
+    color: #878c97;
+}
+
+.linkCTA a {
+    display: flex;
+    align-items: center;
+    background-color: #f81f36;
+    color: #fcc9d0;
+    gap: 20px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    margin-right: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: scale 0.5s ease, background-color 0.5s ease, box-shadow 1s ease;
+}
+
+.linkCTA a:hover {
+    scale: 1.05;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px 2px #751821;
+}
