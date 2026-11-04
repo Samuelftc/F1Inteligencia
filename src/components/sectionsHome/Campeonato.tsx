@@ -159,7 +159,7 @@ export default function Campeonato() {
                             <img src="/assets/images/pilotos/charlesLeclerc.png" alt="" height={50} />
                             <div>
                                 <h4>Charles Leclerc</h4>
-                                <p>McLaren</p>
+                                <p>Ferrari</p>
                             </div>
                         </div>
                         <p className="tempoVoltaRapida">1:26.725</p>

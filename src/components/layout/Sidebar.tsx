@@ -25,7 +25,7 @@ export default function Sidebar() {
             </nav>
 
             <div className="dados-alem">
-                <img className="dados-alem-img" src="/assets/dadosQueVaoAlem.png" alt="" height={400} />
+                <img className="dados-alem-img" src="/assets/dadosQueVaoAlem.png" alt="" height={300} />
             </div>
 
             <div className="perfil">

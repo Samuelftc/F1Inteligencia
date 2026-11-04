@@ -1,6 +1,7 @@
 import Banner from "../components/sectionsHome/Banner";
 import Campeonato from "../components/sectionsHome/Campeonato";
 import CorridasHome from "../components/sectionsHome/Corridas";
+import Insights from "../components/sectionsHome/Insights";
 import '../styles/home/Home.css'
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
             <Banner />
             <Campeonato />
             <CorridasHome />
+            <Insights />
         </main>
     );
 }
