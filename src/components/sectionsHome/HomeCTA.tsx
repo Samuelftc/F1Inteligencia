@@ -3,7 +3,7 @@ import '../../styles/home/HomeCTA.css'
 
 export default function HomeCTA() {
     return (
-        <section className="homeCTA">
+        <section className="homeCTA section">
             <div className="divHomeCTA">
                 <div className="tituloCTA">
                     <img src="/assets/logoF1Intelligence.png" alt="" height={50} />

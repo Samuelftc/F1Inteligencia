@@ -3,10 +3,10 @@ import '../../styles/home/Ferramentas.css'
 
 export default function Ferramentas() {
     return (
-        <section className="exploreFerramentas">
-            <div className="topoFerramentas">
-                <div className="infosTopoFerramentas">
-                    <h2 className="tituloFerramentas">Explore as ferramentas</h2>
+        <section className="exploreFerramentas section">
+            <div className="topoSection">
+                <div className="infosTopoSection">
+                    <h2 className="tituloSection">Explore as ferramentas</h2>
                     <p>Acesse análises detalhadas e mergulhe nos dados de cada corrida.</p>
                 </div>
             </div>

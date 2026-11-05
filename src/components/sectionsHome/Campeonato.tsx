@@ -19,15 +19,15 @@ export default function Campeonato() {
     ];
 
     return (
-        <section className="campeonato">
-            <div className="topoCampeonato">
-                <div className="infosTopoCampeonato">
-                    <h2 className="tituloCampeonato">Campeonato 2025</h2>
+        <section className="campeonato section">
+            <div className="topoSection">
+                <div className="infosTopoSection">
+                    <h2 className="tituloSection">Campeonato 2025</h2>
                     <p>Classificação de pilotos e construtores.</p>
                 </div>
 
-                <div className="containerlinkTopoCampeonato">
-                    <a href="#" className="linkTopoCampeonato">
+                <div className="containerlinkTopoSection">
+                    <a href="#" className="linkTopoSection">
                         Ver classificação completa
                         <ArrowRight size={20} />
                     </a>

@@ -132,7 +132,7 @@ export default function CorridasHome() {
     ];
 
     return (
-        <section className="corridasHome">
+        <section className="corridasHome section">
             <div className="topoCorridas">
                 <div className="infosTopoCorridas">
                     <h2 className="tituloCorridas">Corridas 2025</h2>

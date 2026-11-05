@@ -4,15 +4,15 @@ import '../../styles/home/Insights.css';
 
 export default function Insights() {
     return (
-        <section className="performanceInsights">
-            <div className="topoInsights">
-                <div className="infosTopoInsights">
-                    <h2 className="tituloInsights">Performance insights</h2>
+        <section className="performanceInsights section">
+            <div className="topoSection">
+                <div className="infosTopoSection">
+                    <h2 className="tituloSection">Performance insights</h2>
                     <p>Descobertas e análises baseadas nos dados da temporada.</p>
                 </div>
 
-                <div className="containerlinkTopoInsights">
-                    <a href="#" className="linkTopoInsights">
+                <div className="containerlinkTopoSection">
+                    <a href="#" className="linkTopoSection">
                         Ver mais insights
                         <ArrowRight size={20} />
                     </a>
