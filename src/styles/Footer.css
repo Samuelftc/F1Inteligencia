@@ -1,0 +1,137 @@
+.footer {
+    margin-left: 285px;
+    padding: 20px;
+    padding-top: 100px;
+    background-color: #00060b;
+    color: aliceblue;
+}
+
+.containerFooter {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.resumoFooter div h3 {
+    font-size: 24px;
+}
+
+.resumoFooter div p {
+    color: #676e78;
+}
+
+.redesSociais {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.redesSociais li {
+    padding: 10px;
+    border: 1px solid #a8afb9;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.redesSociais li:hover {
+    scale: 1.1;
+    background-color: rgb(179, 189, 197);
+}
+
+.redesSociais li:hover > a {
+    color: #00060b;
+
+}
+
+.redesSociais li a {
+    color: aliceblue;
+}
+
+.campoFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    padding-left: 50px;
+    border-left: 1px solid #676e78;
+}
+
+.campoFooter h3 {
+    text-transform: uppercase;
+}
+
+.linksCampoFooter {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.linksCampoFooter a {
+    color: #676e78;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.linksCampoFooter a:hover {
+    text-decoration: underline;
+    color: #a8afb9;
+}
+
+.creditosFooter {
+    margin-top: 30px;
+    border-top: 1px solid #676e78;
+    padding-top: 20px;
+    margin-left: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright {
+    font-size: 18px;
+}
+
+.copyright a {
+    color: #b90828;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.5s ease, color 0.5s ease;
+}
+
+.copyright a:hover {
+    text-decoration: underline;
+    color: #910720;
+}
+
+.descMenorFooter {
+    color: #676e78;
+}
+
+.voltarAoTopo a {
+    color: #bec4ce;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.voltarAoTopo a:hover {
+    text-decoration: underline;
+}
+
+.voltarAoTopo svg {
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border: 1px solid #bec4ce;
+    border-radius: 5px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.voltarAoTopo svg:hover {
+    background-color: #bec4ce;
+    color: #00060b;
+}

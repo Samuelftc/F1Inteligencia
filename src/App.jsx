@@ -1,6 +1,7 @@
 import './styles/Reset.css'
 import Sidebar from './components/layout/Sidebar'
 import Home from './pages/Home'
+import Footer from './components/layout/Footer'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Sidebar />
       <Home />
+      <Footer />
     </>
   )
 }
