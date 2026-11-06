@@ -15,28 +15,38 @@ export default function Footer() {
                     </div>
                     <ul className="redesSociais">
                         <li>
-                            <a href="https://github.com/Samuelftc" target="_blank">
-                                <FaGithub size={24} />
+                            <a
+                                href="https://github.com/Samuelftc"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub de Samuel Ferreira (abre em nova aba)"
+                            >
+                                <FaGithub size={24} aria-hidden="true" />
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/samuel-ferreira-desenvolvedor/" target="_blank">
-                                <FaLinkedin size={24} />
+                            <a
+                                href="https://www.linkedin.com/in/samuel-ferreira-desenvolvedor/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn de Samuel Ferreira (abre em nova aba)"
+                            >
+                                <FaLinkedin size={24} aria-hidden="true" />
                             </a>
                         </li>
                         <li>
                             <a
                                 href="mailto:samuelferreiradev08@gmail.com"
-                                aria-label="Enviar e-mail"
+                                aria-label="Enviar e-mail para Samuel Ferreira"
                             >
-                                <SiGmail size={24} />
+                                <SiGmail size={24} aria-hidden="true" />
                             </a>
                         </li>
                     </ul>
                 </div>
 
-                <div className="campoFooter">
-                    <h3>Explorar</h3>
+                <nav className="campoFooter" aria-labelledby="titulo-explorar">
+                    <h3 id="titulo-explorar">Explorar</h3>
                     <ul className="linksCampoFooter">
                         <li>
                             <a href="#">Visão geral</a>
@@ -51,10 +61,10 @@ export default function Footer() {
                             <a href="">Calendários</a>
                         </li>
                     </ul>
-                </div>
+                </nav>
 
-                <div className="campoFooter">
-                    <h3>Análises</h3>
+                <nav className="campoFooter" aria-labelledby="titulo-analises">
+                    <h3 id="titulo-analises">Análises</h3>
                     <ul className="linksCampoFooter">
                         <li>
                             <a href="#">Comparar pilotos</a>
@@ -66,13 +76,13 @@ export default function Footer() {
                             <a href="">Telemetria</a>
                         </li>
                     </ul>
-                </div>
+                </nav>
 
-                <div className="campoFooter">
-                    <h3>Projeto</h3>
+                <nav className="campoFooter" aria-labelledby="titulo-projeto">
+                    <h3 id="titulo-projeto">Projeto</h3>
                     <ul className="linksCampoFooter">
                         <li>
-                            <a href="#">Sobre p F1 Intelligence</a>
+                            <a href="#">Sobre o F1 Intelligence</a>
                         </li>
                         <li>
                             <a href="#">Fontes de dados</a>
@@ -81,19 +91,19 @@ export default function Footer() {
                             <a href="">Contato</a>
                         </li>
                     </ul>
-                </div>
+                </nav>
             </div>
 
             <div className="creditosFooter">
                 <div className="divCopyright">
-                    <p className="copyright">&copy; 2026 F1 Intelligence | Desenvolvido por <a href="https://samuelferreiradev.netlify.app/" target="_blank">Samuel Ferreira</a></p>
-                    <p className="descMenorFooter">Projeto independente, sem vinculo oficial com a Fórmula 1.</p>
+                    <p className="copyright">&copy; 2026 F1 Intelligence | Desenvolvido por <a href="https://samuelferreiradev.netlify.app/" aria-label="Site Portfolio de Samuel Ferreira (abre em nova aba)" target="_blank" rel="noopener noreferrer">Samuel Ferreira</a></p>
+                    <p className="descMenorFooter">Projeto independente, sem vínculo oficial com a Fórmula 1.</p>
                 </div>
 
                 <div className="voltarAoTopo">
-                    <a href="">
+                    <a href="#banner">
                         voltar ao topo
-                        <ArrowUp />
+                        <ArrowUp aria-hidden="true" />
                     </a>
                 </div>
             </div>

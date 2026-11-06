@@ -8,19 +8,49 @@ export default function Sidebar() {
                 <img src="/assets/logoF1Intelligence.png" alt="Logo F1 Inteligencia" height={80} />
             </div>
 
-            <nav className="menus">
+            <nav className="menus" aria-label="Navegação principal">
                 <ul className="menu-lista">
-                    <li className="active"><House /><a href="">Visão Geral</a></li>
-                    <li><Flag /><a href="">Explorar Corridas</a></li>
-                    <li><UsersRound /><a href="">Comparação de Pilotos</a></li>
+                    <li className="active">
+                        <a href="" aria-current="page">
+                            <House aria-hidden="true" />
+                            <span>Visão Geral</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <Flag aria-hidden="true" />
+                            <span>Explorar Corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <UsersRound aria-hidden="true" />
+                            <span>Comparação de Pilotos</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <p>Análise Avançada</p>
 
                 <ul className="menu-lista">
-                    <li><ChartNoAxesColumnIncreasing /><a href="">Laboratório de estratégia</a></li>
-                    <li><ActivityIcon /><a href="">Laboratório de telemetria</a></li>
-                    <li><Radio /><a href="">Central de Corridas ao Vivo</a></li>
+                    <li>
+                        <a href="">
+                            <ChartNoAxesColumnIncreasing aria-hidden="true" />
+                            <span>Laboratório de estratégia</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <ActivityIcon aria-hidden="true" />
+                            <span>Laboratório de telemetria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <Radio aria-hidden="true" />
+                            <span>Central de Corridas ao Vivo</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
@@ -36,8 +66,8 @@ export default function Sidebar() {
                         <p className="perfil-plano">Plano grátis</p>
                     </div>
                 </div>
-                <button className="perfil-config">
-                    <Settings size={28} color='#6f7886' />
+                <button type="button" className="perfil-config" aria-label="Configurações do perfil">
+                    <Settings size={28} color='#6f7886' aria-hidden="true" />
                 </button>
             </div>
         </aside>

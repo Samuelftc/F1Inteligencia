@@ -9,43 +9,43 @@ export default function Banner() {
         { id: 3, link: '#', nome: 'Temporada 2023', ano: 2023 },
     ];
 
-    const [temporadaSelecionada, setTemporadaSelecionada] = useState(1);
+    const [temporadaSelecionada, setTemporadaSelecionada] = useState(2025);
 
     const handleTemporadaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTemporadaSelecionada(Number(event.target.value));
     };
 
     const temporadaAtual = temporadas.find(
-        (temporada) => temporada.id === temporadaSelecionada
-    );
+        (temporada) => temporada.ano === temporadaSelecionada
+    ) ?? temporadas[0];
 
     return (
-        <section className="bannerHome">
+        <section className="bannerHome" id="banner">
             <div className="topoBanner">
-                <div className="campoBusca">
-                    <Search color="#39424e" />
-                    <input type="text" placeholder="Buscar piloto, equipe, circuito ou corrida..." />
+                <div className="campoBusca" role="search">
+                    <Search color="#39424e" aria-hidden="true" />
+                    <input type="search" aria-label="Buscar piloto, equipe, circuito ou corrida" placeholder="Buscar piloto, equipe, circuito ou corrida..." />
                 </div>
 
                 <div className="campoNotificacoes">
-                    <button className="languages">
-                        <Languages size={20} />
+                    <button type="button" className="languages" aria-label="Alterar idioma">
+                        <Languages size={20} aria-hidden="true" />
                     </button>
 
-                    <button className="moon">
-                        <Moon size={20} />
+                    <button type="button" className="moon" aria-label="Alterar tema">
+                        <Moon size={20} aria-hidden="true" />
                     </button>
 
-                    <select className="selectTemporada" name="" id="" onChange={handleTemporadaChange}>
+                    <select className="selectTemporada" aria-label="Selecionar temporada" value={temporadaSelecionada} onChange={handleTemporadaChange}>
                         {temporadas.map((temporada) => (
-                            <option key={temporada.id} value={temporada.id}>
+                            <option key={temporada.ano} value={temporada.ano}>
                                 {temporada.nome}
                             </option>
                         ))}
                     </select>
 
-                    <button className="btnNotificacao">
-                        <Bell size={20} />
+                    <button type="button" className="btnNotificacao" aria-label="Notificações">
+                        <Bell size={20} aria-hidden="true" />
                     </button>
                 </div>
             </div>
@@ -53,10 +53,10 @@ export default function Banner() {
             <div className="conteudoBanner">
                 <p className='subtituloBanner'>Fórmula 1</p>
                 <h1 className='tituloBanner'>Cada volta conta <span>uma história.</span></h1>
-                <p className='descricaoBanner'>Análises, estatisticas e insights para você entender o que acontece dentro e fora das pistas.</p>
+                <p className='descricaoBanner'>Análises, estatísticas e insights para você entender o que acontece dentro e fora das pistas.</p>
                 <a className="btnExplore" href={temporadaAtual?.link || temporadas[0].link}>
-                    Explorar a {temporadaAtual?.nome || temporadas[0].nome}
-                    <ArrowRight size={20} />
+                    Explorar a {temporadaAtual.nome}
+                    <ArrowRight size={20} aria-hidden="true" />
                 </a>
             </div>
         </section>

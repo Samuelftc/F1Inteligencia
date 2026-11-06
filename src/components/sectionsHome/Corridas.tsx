@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, A11y } from "swiper/modules";
 
 import "swiper/css";
 import 'swiper/css/navigation';
@@ -132,17 +132,17 @@ export default function CorridasHome() {
     ];
 
     return (
-        <section className="corridasHome section">
+        <section className="corridasHome section" aria-labelledby="titulo-corridas">
             <div className="topoCorridas">
                 <div className="infosTopoCorridas">
-                    <h2 className="tituloCorridas">Corridas 2025</h2>
+                    <h2 className="tituloCorridas" id="titulo-corridas">Corridas 2025</h2>
                     <p>Calendário da temporada 2025</p>
                 </div>
 
                 <div className="acoesTopoCorridas">
                     <a href="#" className="linkTopoCorridas">
                         Ver calendário completo
-                        <ArrowRight size={20} />
+                        <ArrowRight size={20} aria-hidden="true" />
                     </a>
 
                     <div className="navegacaoCorridas">
@@ -151,7 +151,7 @@ export default function CorridasHome() {
                             className="btnCorridaAnterior"
                             aria-label="Ver corridas anteriores"
                         >
-                            <ArrowLeft size={20} />
+                            <ArrowLeft size={20} aria-hidden="true" />
                         </button>
 
                         <button
@@ -159,7 +159,7 @@ export default function CorridasHome() {
                             className="btnProximaCorrida"
                             aria-label="Ver próximas corridas"
                         >
-                            <ArrowRight size={20} />
+                            <ArrowRight size={20} aria-hidden="true" />
                         </button>
                     </div>
                 </div>
@@ -167,7 +167,7 @@ export default function CorridasHome() {
 
             <div className="containerCorridas">
                 <Swiper
-                    modules={[Navigation]}
+                    modules={[Navigation, A11y]}
                     spaceBetween={20}
                     slidesPerView={5}
                     slidesPerGroup={5}
@@ -175,6 +175,11 @@ export default function CorridasHome() {
                     navigation={{
                         prevEl: ".btnCorridaAnterior",
                         nextEl: ".btnProximaCorrida"
+                    }}
+                    a11y={{
+                        enabled: true,
+                        containerMessage: 'Calendário de corridas da Fórmula 1 de 2025',
+                        slideLabelMessage: 'Corrida {{index}} de {{slidesLength}}'
                     }}
                     className="swiperCorridas"
                 >
@@ -192,12 +197,12 @@ export default function CorridasHome() {
                                 <a href="#">
                                     <div className="topoCardCorrida">
                                         <div>
-                                            <h3 className="ordemCorrida">R{corrida.ordem}</h3>
+                                            <span className="ordemCorrida">R{corrida.ordem}</span>
                                             <p>
                                                 {corrida.dataInicio} - {corrida.dataFim}
                                             </p>
                                         </div>
-                                        <ArrowRight />
+                                        <ArrowRight aria-hidden="true" />
                                     </div>
 
                                     <div className="mainCardCorrida">
@@ -206,10 +211,11 @@ export default function CorridasHome() {
                                             alt={`Bandeira de ${corrida.pais}`}
                                             className="bandeiraCorrida"
                                             height={40}
+                                            loading="lazy"
                                         />
 
                                         <div>
-                                            <p className="nomeGrandePremio">{corrida.nomeGrandePremio}</p>
+                                            <h3 className="nomeGrandePremio">{corrida.nomeGrandePremio}</h3>
                                             <p className="nomeCircuito">{corrida.nomeCircuito}</p>
                                         </div>
                                     </div>
@@ -219,6 +225,7 @@ export default function CorridasHome() {
                                             src={corrida.pngCircuito}
                                             alt={`Traçado do circuito ${corrida.nomeCircuito}`}
                                             height={120}
+                                            loading="lazy"
                                         />
                                     </div>
                                 </a>
