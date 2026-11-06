@@ -1,7 +1,32 @@
-import { ArrowRight, Flag } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { motion } from 'motion/react';
 import '../../styles/home/Ferramentas.css'
 
 export default function Ferramentas() {
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.6
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.4,
+                ease: "easeOut" as const
+            }
+        }
+    };
+
     return (
         <section className="exploreFerramentas section">
             <div className="topoSection">
@@ -11,8 +36,13 @@ export default function Ferramentas() {
                 </div>
             </div>
 
-            <div className="ferramentas">
-                <div className="cardFerramenta">
+            <motion.div className="ferramentas"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}>
+                <motion.a className="cardFerramenta" href="#"
+                    variants={cardVariants}>
                     <div className="mainCardFerramenta">
                         <div className="infosFerramenta">
                             <div className="textoCardFerramenta">
@@ -38,9 +68,10 @@ export default function Ferramentas() {
                             <ArrowRight />
                         </div>
                     </div>
-                </div>
+                </motion.a>
 
-                <div className="cardFerramenta">
+                <motion.a className="cardFerramenta" href="#"
+                    variants={cardVariants}>
                     <div className="mainCardFerramenta">
                         <div className="infosFerramenta">
                             <div className="textoCardFerramenta">
@@ -66,9 +97,10 @@ export default function Ferramentas() {
                             <ArrowRight />
                         </div>
                     </div>
-                </div>
+                </motion.a>
 
-                <div className="cardFerramenta">
+                <motion.a className="cardFerramenta" href="#"
+                    variants={cardVariants}>
                     <div className="mainCardFerramenta">
                         <div className="infosFerramenta">
                             <div className="textoCardFerramenta">
@@ -94,8 +126,8 @@ export default function Ferramentas() {
                             <ArrowRight />
                         </div>
                     </div>
-                </div>
-            </div>
+                </motion.a>
+            </motion.div>
         </section>
     );
 }

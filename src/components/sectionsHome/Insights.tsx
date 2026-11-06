@@ -1,8 +1,33 @@
 import { ArrowRight, ChartNoAxesCombined, TrendingUp } from "lucide-react";
+import { motion } from "motion/react";
 
 import '../../styles/home/Insights.css';
 
 export default function Insights() {
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.6
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.4,
+                ease: "easeOut" as const
+            }
+        }
+    };
+
     return (
         <section className="performanceInsights section">
             <div className="topoSection">
@@ -19,8 +44,13 @@ export default function Insights() {
                 </div>
             </div>
 
-            <div className="performances">
-                <div className="cardPerformance">
+            <motion.div className="performances"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}>
+                <motion.div className="cardPerformance"
+                    variants={cardVariants}>
                     <div className="topoCardPerformance">
                         <TrendingUp />
                         <span>Ritmo de Corrida</span>
@@ -32,9 +62,10 @@ export default function Insights() {
                         </div>
                         <img src="/assets/images/estastisticas/graficoBarrasHome.png" alt="" />
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="cardPerformance">
+                <motion.div className="cardPerformance"
+                    variants={cardVariants}>
                     <div className="topoCardPerformance">
                         <ChartNoAxesCombined />
                         <span>Consistência</span>
@@ -46,9 +77,10 @@ export default function Insights() {
                         </div>
                         <img src="/assets/images/estastisticas/graficoLinhasHome.png" alt="" />
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="cardPerformance">
+                <motion.div className="cardPerformance"
+                    variants={cardVariants}>
                     <div className="topoCardPerformance">
                         <ChartNoAxesCombined />
                         <span>Estratégia</span>
@@ -60,8 +92,8 @@ export default function Insights() {
                         </div>
                         <img src="/assets/images/estastisticas/graficoPizzaHome.png" alt="" />
                     </div>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </section>
     );
 }

@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import '../../styles/home/Campeonato.css';
 
 export default function Campeonato() {
@@ -18,6 +19,30 @@ export default function Campeonato() {
         { id: 5, posicao: 5, logo: "/assets/images/construtores/williams.png", equipe: "Williams", pontos: 137 },
     ];
 
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.6
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut" as const
+            }
+        }
+    };
+
     return (
         <section className="campeonato section">
             <div className="topoSection">
@@ -36,7 +61,14 @@ export default function Campeonato() {
 
             <div className="conteudoCampeonato">
                 <div className="campeonatos">
-                    <div className="cardCampeonato">
+                    <motion.div className="cardCampeonato"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{
+                            duration: 0.6,
+                            ease: "easeOut"
+                        }}>
                         <div className="cardCampeonatoTopo">
                             <h3>Pilotos</h3>
                             <ArrowRight size={30} />
@@ -67,9 +99,16 @@ export default function Campeonato() {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </motion.div>
 
-                    <div className="cardCampeonato">
+                    <motion.div className="cardCampeonato"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{
+                            duration: 0.6,
+                            ease: "easeOut"
+                        }}>
                         <div className="cardCampeonatoTopo">
                             <h3>Construtores</h3>
                             <ArrowRight size={30} />
@@ -96,11 +135,17 @@ export default function Campeonato() {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </motion.div>
                 </div>
 
-                <div className="containerUltimaCorrida">
-                    <div className="cardUltimaCorrida">
+                <motion.div className="containerUltimaCorrida"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}>
+
+                    <motion.div className="cardUltimaCorrida"
+                                variants={cardVariants}>
                         <div className="infosUltimaCorrida">
                             <h3>Última corrida</h3>
                             <div className="detalhesUltimaCorrida">
@@ -151,9 +196,10 @@ export default function Campeonato() {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="cardVoltaRapida">
+                    <motion.div className="cardVoltaRapida"
+                        variants={cardVariants}>
                         <h3>Melhor volta da corrida</h3>
                         <div className="infosVoltaRapida">
                             <img src="/assets/images/pilotos/charlesLeclerc.png" alt="" height={50} />
@@ -164,8 +210,8 @@ export default function Campeonato() {
                         </div>
                         <p className="tempoVoltaRapida">1:26.725</p>
                         <p className="infosVoltaComposto">Volta 45 - Composto Médio</p>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
         </section >
     );

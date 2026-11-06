@@ -1,4 +1,4 @@
-import { ArrowRight, Bell, Search } from 'lucide-react';
+import { ArrowRight, Bell, Languages, Moon, Search } from 'lucide-react';
 import '../../styles/home/Banner.css'
 import { useState } from 'react';
 
@@ -28,6 +28,14 @@ export default function Banner() {
                 </div>
 
                 <div className="campoNotificacoes">
+                    <button className="languages">
+                        <Languages size={20} />
+                    </button>
+
+                    <button className="moon">
+                        <Moon size={20} />
+                    </button>
+
                     <select className="selectTemporada" name="" id="" onChange={handleTemporadaChange}>
                         {temporadas.map((temporada) => (
                             <option key={temporada.id} value={temporada.id}>
