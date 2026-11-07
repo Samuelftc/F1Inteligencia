@@ -59,8 +59,8 @@ export default function Insights() {
                     </div>
                     <div className="mainCardPerformance">
                         <div className="textoCardPerformance">
-                            <h3>McLaren teve o melhor ritmo médio em 2025</h3>
-                            <p>Com base nas voltas válidas de corrida, a McLaren apresentou o menor tempo médio entre as equipes.</p>
+                            <h3>McLaren se destacou no ritmo em 2025</h3>
+                            <p>A equipe liderou análises de desempenho médio da temporada, consolidando sua competitividade ao longo do campeonato.</p>
                         </div>
                         <img src="/assets/images/estastisticas/graficoBarrasHome.png" alt="" loading="lazy" />
                     </div>
@@ -74,8 +74,8 @@ export default function Insights() {
                     </div>
                     <div className="mainCardPerformance">
                         <div className="textoCardPerformance">
-                            <h3>Verstappen lidera em consistência de ritmo</h3>
-                            <p>Menor variação de tempos de volta entre os pilotos da temporada (0.427s de desvio-padrão).</p>
+                            <h3>Consistência de ritmo ao longo da temporada</h3>
+                            <p>Compare a variação dos tempos de volta dos pilotos para identificar quem manteve o ritmo mais estável.</p>
                         </div>
                         <img src="/assets/images/estastisticas/graficoLinhasHome.png" alt="" loading="lazy" />
                     </div>
@@ -89,8 +89,8 @@ export default function Insights() {
                     </div>
                     <div className="mainCardPerformance">
                         <div className="textoCardPerformance">
-                            <h3>Estratégia de 1 pit stop foi a mais eficiente</h3>
-                            <p>62% das corridas de 2025 foram vencidas com estratégia de apenas uma parada nos boxes.</p>
+                            <h3>Estratégias de uma parada se destacaram em 2025</h3>
+                            <p>A estratégia de uma parada esteve presente em grande parte das vitórias, mas sua eficácia variou conforme o circuito e as condições de corrida.</p>
                         </div>
                         <img src="/assets/images/estastisticas/graficoPizzaHome.png" alt="" loading="lazy" />
                     </div>
