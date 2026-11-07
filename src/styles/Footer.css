@@ -1,52 +1,73 @@
+.footer,
+.footer * {
+    box-sizing: border-box;
+}
+
 .footer {
-    margin-left: 285px;
-    padding: 20px;
-    padding-top: 100px;
+    margin-left: var(--sidebar-width, 320px);
+    min-width: 0;
+    padding: 100px 20px 20px;
     background-color: #00060b;
     color: aliceblue;
 }
 
 .containerFooter {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    gap: 32px;
 }
 
-.resumoFooter div h3 {
+.resumoFooter,
+.campoFooter,
+.divCopyright {
+    min-width: 0;
+}
+
+.resumoFooter > img {
+    display: block;
+    max-width: 100%;
+    height: 100px;
+    object-fit: contain;
+}
+
+.resumoFooter h3 {
     font-size: 24px;
+    line-height: 1.3;
+    overflow-wrap: break-word;
 }
 
-.resumoFooter div p {
+.resumoFooter p {
+    margin-top: 8px;
     color: #676e78;
+    line-height: 1.5;
 }
 
 .redesSociais {
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 16px 0 0;
+    padding: 0;
     list-style: none;
-    margin-top: 10px;
 }
 
 .redesSociais li {
-    padding: 10px;
     border: 1px solid #a8afb9;
     border-radius: 10px;
-    transition: all 0.5s ease;
-    cursor: pointer;
-}
-
-.redesSociais li:hover {
-    scale: 1.1;
-    background-color: rgb(179, 189, 197);
-}
-
-.redesSociais li:hover > a {
-    color: #00060b;
-
+    transition:
+        scale 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .redesSociais li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: inherit;
     color: aliceblue;
+    transition: color 0.3s ease;
 }
 
 .campoFooter {
@@ -54,84 +75,241 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 30px;
-    padding-left: 50px;
+    padding-left: 24px;
     border-left: 1px solid #676e78;
 }
 
 .campoFooter h3 {
     text-transform: uppercase;
+    overflow-wrap: break-word;
 }
 
 .linksCampoFooter {
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .linksCampoFooter a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    max-width: 100%;
     color: #676e78;
-    text-decoration: none;
     font-size: 18px;
-}
-
-.linksCampoFooter a:hover {
-    text-decoration: underline;
-    color: #a8afb9;
+    line-height: 1.4;
+    text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .creditosFooter {
-    margin-top: 30px;
-    border-top: 1px solid #676e78;
-    padding-top: 20px;
-    margin-left: 60px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 24px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #676e78;
+}
+
+.divCopyright {
+    flex: 1;
 }
 
 .copyright {
     font-size: 18px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
 }
 
 .copyright a {
     color: #b90828;
     text-decoration: none;
     font-weight: bold;
-    transition: text-decoration 0.5s ease, color 0.5s ease;
-}
-
-.copyright a:hover {
-    text-decoration: underline;
-    color: #910720;
+    transition: color 0.3s ease;
 }
 
 .descMenorFooter {
+    margin-top: 8px;
     color: #676e78;
+    line-height: 1.5;
+}
+
+.voltarAoTopo {
+    flex-shrink: 0;
 }
 
 .voltarAoTopo a {
-    color: #bec4ce;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 12px;
+    min-height: 44px;
+    color: #bec4ce;
+    font-size: 18px;
     text-decoration: none;
-    font-size: 20px;
-}
-
-.voltarAoTopo a:hover {
-    text-decoration: underline;
 }
 
 .voltarAoTopo svg {
-    height: 30px;
+    flex-shrink: 0;
     width: 30px;
+    height: 30px;
     padding: 5px;
     border: 1px solid #bec4ce;
     border-radius: 5px;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
-.voltarAoTopo svg:hover {
-    background-color: #bec4ce;
-    color: #00060b;
+.footer a:focus-visible {
+    outline: 2px solid #fa1931;
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .redesSociais li:hover {
+        scale: 1.1;
+        background-color: rgb(179, 189, 197);
+    }
+
+    .redesSociais li:hover > a {
+        color: #00060b;
+    }
+
+    .linksCampoFooter a:hover {
+        text-decoration: underline;
+        color: #a8afb9;
+    }
+
+    .copyright a:hover {
+        text-decoration: underline;
+        color: #910720;
+    }
+
+    .voltarAoTopo a:hover {
+        text-decoration: underline;
+    }
+
+    .voltarAoTopo a:hover svg {
+        background-color: #bec4ce;
+        color: #00060b;
+    }
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1280px) {
+    .containerFooter {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .resumoFooter {
+        grid-column: 1 / -1;
+    }
+
+    .campoFooter {
+        margin-top: 0;
+        padding-left: 16px;
+    }
+
+    .creditosFooter {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        margin-left: 0;
+        padding-top: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding-top: 48px;
+    }
+
+    .creditosFooter {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .copyright {
+        font-size: 16px;
+    }
+
+    .descMenorFooter {
+        font-size: 14px;
+    }
+
+    .voltarAoTopo a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .containerFooter {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 40px 16px 20px;
+    }
+
+    .containerFooter {
+        gap: 24px 16px;
+    }
+
+    .resumoFooter > img {
+        height: 80px;
+    }
+
+    .resumoFooter h3 {
+        font-size: 20px;
+    }
+
+    .resumoFooter p {
+        font-size: 16px;
+    }
+
+    .campoFooter {
+        padding-left: 12px;
+    }
+
+    .campoFooter h3 {
+        font-size: 16px;
+    }
+
+    .linksCampoFooter a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 359px) {
+    .containerFooter {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .resumoFooter {
+        grid-column: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer *,
+    .footer *::before,
+    .footer *::after {
+        transition: none;
+    }
+
+    .redesSociais li:hover {
+        scale: 1;
+    }
 }

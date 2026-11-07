@@ -46,8 +46,30 @@ export default function CorridasHome() {
                 <Swiper
                     modules={[Navigation, A11y]}
                     spaceBetween={20}
-                    slidesPerView={5}
-                    slidesPerGroup={5}
+                    slidesPerView={1}
+                    slidesPerGroup={1}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            slidesPerGroup: 2,
+                        },
+                        1025: {
+                            slidesPerView: 2,
+                            slidesPerGroup: 2,
+                        },
+                        1280: {
+                            slidesPerView: 3,
+                            slidesPerGroup: 3,
+                        },
+                        1600: {
+                            slidesPerView: 4,
+                            slidesPerGroup: 4,
+                        },
+                        1920: {
+                            slidesPerView: 5,
+                            slidesPerGroup: 5,
+                        },
+                    }}
                     speed={600}
                     navigation={{
                         prevEl: ".btnCorridaAnterior",

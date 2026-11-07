@@ -1,3 +1,17 @@
+.campeonato,
+.campeonato * {
+    box-sizing: border-box;
+}
+
+.conteudoCampeonato,
+.campeonatos,
+.containerUltimaCorrida,
+.infosUltimaCorrida,
+.resultadosUltimaCorrida,
+.cardVoltaRapida {
+    min-width: 0;
+}
+
 .campeonatos {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5,20 +19,21 @@
 }
 
 .cardCampeonato {
+    width: 100%;
+    min-width: 0;
+    padding: 20px;
     background-color: #0b131b;
     border: 1px solid #1f2a33;
     border-radius: 10px;
-    padding: 20px;
-    width: 100%;
-    min-width: 0;
 }
 
 .cardCampeonatoTopo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
+    justify-content: space-between;
+    gap: 12px;
     margin-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #1f2a33;
 }
 
@@ -29,6 +44,7 @@
 }
 
 .cardCampeonatoTopo svg {
+    flex-shrink: 0;
     padding: 5px;
     background-color: #050c12;
     border-radius: 50%;
@@ -37,13 +53,15 @@
 .tabelaCampeonato {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .tabelaCampeonato th,
 .tabelaCampeonato td {
     padding: 10px;
-    text-align: left;
     border-bottom: 1px solid #1f2a33;
+    text-align: left;
+    overflow-wrap: anywhere;
 }
 
 .tabelaCampeonato th {
@@ -52,18 +70,27 @@
     text-transform: uppercase;
 }
 
+.tabelaCampeonato thead th:first-child {
+    width: 48px;
+}
+
+.tabelaCampeonato thead th:last-child {
+    width: 80px;
+}
+
 .tabelaCampeonatoBody td {
     color: #c2c6c9;
     font-size: 18px;
     font-weight: 500;
 }
 
-.tabelaCampeonatoBody tr {
-    transition: background-color 0.3s ease;
+.tabelaCampeonatoBody th[scope="row"] {
+    color: #c2c6c9;
+    text-transform: none;
 }
 
-.tabelaCampeonatoBody tr:hover {
-    background-color: #1f2a33;
+.tabelaCampeonatoBody tr {
+    transition: background-color 0.3s ease;
 }
 
 .tabelaCampeonato th:first-child,
@@ -78,17 +105,27 @@
     font-size: 18px;
 }
 
-
 .infoTd {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
+    min-width: 0;
     text-align: left;
 }
 
 .infoTd img {
-    height: 60px;
+    flex-shrink: 0;
     width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.infoTd span {
+    min-width: 0;
+}
+
+.controlesCampeonato {
+    display: none;
 }
 
 .containerUltimaCorrida {
@@ -99,35 +136,38 @@
 }
 
 .cardUltimaCorrida {
-    grid-column: span 2;
     display: flex;
+    grid-column: span 2;
     justify-content: space-between;
-    background-image: linear-gradient(to left, rgba(17, 16, 16, 0.61) 0%, rgba(0, 0, 0, 0.1) 100%),
-        url('/assets/bannerUltimaCorrida.webp');
-    background-size: cover;
-    border: 1px solid #1f2a33;
-    border-radius: 10px;
-    padding: 20px;
+    gap: 24px;
     width: 100%;
     min-width: 0;
+    padding: 20px;
+    background-image:
+        linear-gradient(
+            to left,
+            rgba(17, 16, 16, 0.61) 0%,
+            rgba(0, 0, 0, 0.1) 100%
+        ),
+        url('/assets/bannerUltimaCorrida.webp');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #1f2a33;
+    border-radius: 10px;
     transition: scale 0.5s ease, box-shadow 0.5s ease;
-}
-
-.cardUltimaCorrida:hover {
-    scale: 1.01;
-    box-shadow: 0px 0px 10px 2px #1f2a33;
 }
 
 .infosUltimaCorrida {
     display: flex;
+    flex: 1 1 0;
     flex-direction: column;
     gap: 20px;
 }
 
 .infosUltimaCorrida h3 {
+    color: #c2c6c9;
     font-size: 20px;
     font-weight: bold;
-    color: #c2c6c9;
     text-transform: uppercase;
 }
 
@@ -136,137 +176,432 @@
     gap: 20px;
 }
 
+.detalhesUltimaCorrida > img {
+    flex-shrink: 0;
+    max-width: 72px;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+}
+
+.infosDetalhesUltimaCorrida {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .infosDetalhesUltimaCorrida h4 {
-    font-size: 18px;
     color: #c2c6c9;
+    font-size: 18px;
 }
 
 .infosDetalhesUltimaCorrida p {
-    font-size: 16px;
     color: #c2c6c9;
+    font-size: 16px;
 }
 
 .linkUltimaCorrida {
-    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
     gap: 15px;
+    min-height: 44px;
+    margin-top: auto;
     padding: 10px 20px;
     border: 1px solid #cb1728;
+    border-radius: 10px;
     background-color: #430c13b0;
     color: #c2c6c9;
-    border-radius: 10px;
+    font-size: 18px;
     text-decoration: none;
-    transition: all 0.5s ease;
+    transition: background-color 0.3s ease;
 }
 
-.linkUltimaCorrida:hover {
-    background-color: #8e0f1b;
-    border-color: #cb1728;
-    color: #c2c6c9;
+.linkUltimaCorrida svg {
+    flex-shrink: 0;
 }
 
 .resultadosUltimaCorrida {
     display: flex;
+    flex: 1 1 0;
     flex-direction: column;
     gap: 10px;
-    background-color: #0b131bd2;
     padding: 20px;
+    background-color: #0b131bd2;
     border-radius: 10px;
 }
 
 .resultadosUltimaCorrida h4 {
+    color: #c2c6c9;
     font-size: 20px;
     font-weight: bold;
-    color: #c2c6c9;
     text-transform: uppercase;
 }
 
 .resultadosUltimaCorrida ul {
-    list-style: none;
+    margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 .resultadoPiloto {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 12px;
     padding: 10px 0;
     border-bottom: 1px solid #1f2a33;
 }
 
-.resultadoPiloto div {
+.resultadoPiloto > div {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.resultadoPiloto > div > p,
+.resultadoPiloto img {
+    flex-shrink: 0;
+}
+
+.resultadoPiloto img {
+    width: 42px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.resultadoPiloto h5 {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.resultadoPiloto > span {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
 }
 
 .cardVoltaRapida {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 20px;
     background-color: #0b131bd2;
     border: 1px solid #1f2a33;
-    padding: 20px;
     border-radius: 10px;
     transition: scale 0.5s ease, box-shadow 0.5s ease;
 }
 
-.cardVoltaRapida:hover {
-    scale: 1.01;
-    box-shadow: 0px 0px 10px 2px #1f2a33;
-}
-
 .cardVoltaRapida h3 {
+    color: #c2c6c9;
     font-size: 20px;
     font-weight: bold;
-    color: #c2c6c9;
     text-transform: uppercase;
 }
 
 .infosVoltaRapida {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 
 .infosVoltaRapida img {
-    height: 100px;
+    flex-shrink: 0;
     width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
 
-.infosVoltaRapida div {
+.infosVoltaRapida > div {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .infosVoltaRapida h4 {
-    font-size: 20px;
     color: #c2c6c9;
+    font-size: 20px;
 }
 
 .infosVoltaRapida p {
-    font-size: 18px;
     color: #c2c6c9;
+    font-size: 18px;
 }
 
 .tempoVoltaRapida {
-    font-size: 26px;
     color: #b50606;
+    font-size: 26px;
     font-weight: bold;
     text-align: center;
 }
 
 .infosVoltaComposto {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    font-size: 18px;
     color: #c2c6c9;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.linkUltimaCorrida:focus-visible,
+.controlesCampeonato button:focus-visible,
+.campeonatos:focus-visible {
+    outline: 2px solid #fa1931;
+    outline-offset: 3px;
+}
+
+.tabelaCampeonato thead th:first-child,
+.tabelaCampeonato thead th:last-child {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    padding-inline: 4px;
+}
+
+@media (hover: hover) {
+    .tabelaCampeonatoBody tr:hover {
+        background-color: #1f2a33;
+    }
+
+    .cardUltimaCorrida:hover,
+    .cardVoltaRapida:hover {
+        scale: 1.01;
+        box-shadow: 0 0 10px 2px #1f2a33;
+    }
+
+    .linkUltimaCorrida:hover {
+        background-color: #8e0f1b;
+    }
+
+    .controlesCampeonato button:hover {
+        background-color: #1f2a33;
+    }
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1280px) {
+    .campeonatos {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: #39444e #0b131b;
+    }
+
+    .campeonatos > .cardCampeonato {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+    }
+
+    .controlesCampeonato {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .controlesCampeonato button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 14px;
+        border: 1px solid #1f2a33;
+        border-radius: 8px;
+        background-color: #0b131b;
+        color: #c2c6c9;
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .controlesCampeonato button svg {
+        flex-shrink: 0;
+    }
+
+    .containerUltimaCorrida {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 24px;
+    }
+
+    .cardUltimaCorrida {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardCampeonato {
+        padding: 16px;
+    }
+
+    .cardUltimaCorrida {
+        flex-direction: column;
+    }
+
+    .infosUltimaCorrida,
+    .resultadosUltimaCorrida {
+        flex: auto;
+        width: 100%;
+    }
+
+    .linkUltimaCorrida {
+        align-self: flex-start;
+        font-size: 16px;
+    }
+
+    .resultadosUltimaCorrida {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardCampeonato {
+        padding: 12px;
+    }
+
+    .cardCampeonatoTopo {
+        margin-bottom: 12px;
+    }
+
+    .cardCampeonatoTopo h3 {
+        font-size: 18px;
+    }
+
+    .tabelaCampeonato th,
+    .tabelaCampeonato td {
+        padding: 10px 4px;
+        font-size: 12px;
+    }
+
+    .tabelaCampeonato thead th:first-child {
+        width: 32px;
+    }
+
+    .tabelaCampeonato thead th:last-child {
+        width: 56px;
+    }
+
+    .tabelaCampeonato td:first-child,
+    .tabelaCampeonato td:last-child {
+        font-size: 14px;
+    }
+
+    .infoTd {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .infoTd img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cardUltimaCorrida,
+    .cardVoltaRapida {
+        padding: 16px;
+    }
+
+    .infosUltimaCorrida h3,
+    .resultadosUltimaCorrida h4,
+    .cardVoltaRapida h3 {
+        font-size: 18px;
+    }
+
+    .detalhesUltimaCorrida {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .detalhesUltimaCorrida > img {
+        max-width: 48px;
+        max-height: 36px;
+    }
+
+    .infosDetalhesUltimaCorrida h4 {
+        font-size: 16px;
+    }
+
+    .infosDetalhesUltimaCorrida p {
+        margin-top: 6px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .linkUltimaCorrida {
+        align-self: stretch;
+        gap: 8px;
+        padding-inline: 12px;
+    }
+
+    .resultadoPiloto > div {
+        gap: 8px;
+    }
+
+    .resultadoPiloto img {
+        width: 32px;
+        height: 40px;
+    }
+
+    .resultadoPiloto > span {
+        font-size: 12px;
+    }
+
+    .infosVoltaRapida {
+        gap: 12px;
+    }
+
+    .infosVoltaRapida img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .infosVoltaRapida h4 {
+        font-size: 18px;
+    }
+
+    .infosVoltaRapida p,
+    .infosVoltaComposto {
+        font-size: 16px;
+    }
+
+    .cardUltimaCorrida:hover,
+    .cardVoltaRapida:hover {
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .campeonato *,
+    .campeonato *::before,
+    .campeonato *::after {
+        transition: none;
+    }
+}
+
+/* Mais espaço entre as colunas no desktop e tablet. */
+@media (min-width: 769px) {
+    .tabelaCampeonato th,
+    .tabelaCampeonato td {
+        padding-inline: 16px;
+    }
+
+    .tabelaCampeonato thead th:first-child {
+        width: 64px;
+    }
+
+    .tabelaCampeonato thead th:last-child {
+        width: 96px;
+    }
+
+    .tabelaCampeonato th:first-child,
+    .tabelaCampeonato td:first-child,
+    .tabelaCampeonato th:last-child,
+    .tabelaCampeonato td:last-child {
+        padding-inline: 8px;
+    }
 }

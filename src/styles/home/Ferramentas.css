@@ -1,3 +1,12 @@
+.exploreFerramentas,
+.exploreFerramentas * {
+    box-sizing: border-box;
+}
+
+.exploreFerramentas {
+    min-width: 0;
+}
+
 .ferramentas {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5,27 +14,26 @@
 }
 
 .cardFerramenta {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 180px;
     background-color: #0b131b;
     border: 1px solid #5b5f6742;
     border-radius: 5px;
     overflow: hidden;
-    width: 100%;
-    min-width: 0;
-    min-height: 180px;
     text-decoration: none;
     color: aliceblue;
-    transition: scale 0.5s ease, box-shadow 1s ease;
-}
-
-.cardFerramenta:hover {
-    scale: 1.03;
-    box-shadow: 0px 0px 10px 2px #5b5f6742;
+    transition:
+        scale 0.5s ease,
+        box-shadow 1s ease;
 }
 
 .mainCardFerramenta {
     display: flex;
+    flex: 1;
     width: 100%;
-    height: 100%;
+    min-width: 0;
 }
 
 .infosFerramenta {
@@ -34,18 +42,24 @@
     min-width: 0;
     padding: 30px 0 30px 30px;
     gap: 10px;
-    box-sizing: border-box;
 }
 
 .textoCardFerramenta {
-    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
+}
+
+.textoCardFerramenta h3 {
+    line-height: 1.3;
+    overflow-wrap: break-word;
 }
 
 .textoCardFerramenta p {
     color: #7f8794;
+    line-height: 1.5;
+    overflow-wrap: break-word;
 }
 
 .imagemFundoCardFerramenta {
@@ -59,12 +73,94 @@
 
 .imagemFundoCardFerramenta svg {
     position: absolute;
-    right: 10px;
     top: 10px;
-
-    background-color: #000000bd;
-    padding: 5px;
-    border-radius: 50%;
-    height: 30px;
+    right: 10px;
     width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color: #000000bd;
+    border-radius: 50%;
+}
+
+.cardFerramenta:focus-visible {
+    outline: 2px solid #fa1931;
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .cardFerramenta:hover {
+        scale: 1.03;
+        box-shadow: 0 0 10px 2px #5b5f6742;
+    }
+}
+
+/* RESPONSIVO */
+
+/* Duas colunas considerando o espaço da sidebar. */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    .ferramentas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .infosFerramenta {
+        padding: 24px 0 24px 24px;
+    }
+}
+
+/* Tablet com a sidebar recolhida. */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .ferramentas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .infosFerramenta {
+        padding: 24px 0 24px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ferramentas {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .infosFerramenta {
+        padding: 24px 0 24px 24px;
+    }
+
+    .textoCardFerramenta {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .infosFerramenta {
+        flex-basis: 65%;
+        padding: 20px 0 20px 16px;
+    }
+
+    .textoCardFerramenta {
+        gap: 12px;
+    }
+
+    .textoCardFerramenta h3 {
+        font-size: 18px;
+    }
+
+    .textoCardFerramenta p {
+        font-size: 14px;
+    }
+
+    .cardFerramenta:hover {
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cardFerramenta {
+        transition: none;
+    }
+
+    .cardFerramenta:hover {
+        scale: 1;
+    }
 }

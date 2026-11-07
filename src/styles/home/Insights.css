@@ -1,9 +1,20 @@
+.performanceInsights,
+.performanceInsights * {
+    box-sizing: border-box;
+}
+
+.performanceInsights {
+    min-width: 0;
+}
+
 .performances {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
 .cardPerformance {
+    min-width: 0;
     padding: 20px;
     background-color: #091018;
     border: 1px solid #5b5f67;
@@ -14,39 +25,136 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
 }
 
 .topoCardPerformance svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
     color: #775277;
 }
 
 .topoCardPerformance span {
+    min-width: 0;
     padding: 2px 10px;
     background-color: #192330;
     border-radius: 10px;
-    text-transform: uppercase;
-    font-size: 14px;
     color: #7f8794;
+    font-size: 14px;
     font-weight: bold;
+    line-height: 1.5;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
 }
 
 .mainCardPerformance {
-    margin-top: 20px;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
 }
 
-.mainCardPerformance img {
-    height: 200px;
-    width: 200px;
+.textoCardPerformance {
+    flex: 1;
+    min-width: 0;
 }
 
 .textoCardPerformance h3 {
-    font-size: 22px;
     margin-bottom: 10px;
+    font-size: 22px;
+    line-height: 1.3;
+    overflow-wrap: break-word;
 }
 
 .textoCardPerformance p {
     color: #7f8794;
     font-size: 18px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.mainCardPerformance > img {
+    display: block;
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 200px;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* RESPONSIVO */
+
+/* Considera o espaço ocupado pela sidebar no desktop. */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    .performances {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mainCardPerformance {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mainCardPerformance > img {
+        align-self: center;
+        width: 100%;
+    }
+}
+
+/* Tablet: sidebar recolhida, dois cards por linha. */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .performances {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mainCardPerformance {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mainCardPerformance > img {
+        align-self: center;
+        width: 100%;
+    }
+}
+
+/* Um card por linha, com texto e imagem lado a lado. */
+@media (max-width: 768px) {
+    .performances {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .textoCardPerformance h3 {
+        font-size: 20px;
+    }
+
+    .textoCardPerformance p {
+        font-size: 16px;
+    }
+}
+
+/* Celulares: imagem abaixo do texto. */
+@media (max-width: 480px) {
+    .cardPerformance {
+        padding: 16px;
+    }
+
+    .topoCardPerformance span {
+        font-size: 12px;
+    }
+
+    .mainCardPerformance {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 16px;
+    }
+
+    .mainCardPerformance > img {
+        align-self: center;
+        width: 100%;
+        max-width: 180px;
+        max-height: 180px;
+    }
 }

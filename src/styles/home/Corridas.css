@@ -1,8 +1,22 @@
+.corridasHome,
+.corridasHome * {
+    box-sizing: border-box;
+}
+
+.corridasHome {
+    min-width: 0;
+}
+
 .topoCorridas {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     margin-bottom: 20px;
+}
+
+.infosTopoCorridas {
+    min-width: 0;
 }
 
 .tituloCorridas {
@@ -15,87 +29,29 @@
 .infosTopoCorridas p {
     color: #5b5f67;
     font-size: 18px;
+    line-height: 1.5;
 }
 
 .linkTopoCorridas {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
     gap: 15px;
+    min-height: 44px;
     padding: 10px 20px;
     color: #cb1728;
+    font-size: 18px;
+    line-height: 1.4;
     text-decoration: none;
-    transition: all 0.3s ease;
+}
+
+.linkTopoCorridas svg {
+    flex-shrink: 0;
 }
 
 .linkTopoCorridas:hover {
     text-decoration: underline;
 }
-
-.cardCorrida {
-    border: 1px solid #5b5f679f;
-    padding: 20px;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-.cardCorrida a {
-    color: #c2c6c9;
-    text-decoration: none;
-}
-
-.topoCardCorrida {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.topoCardCorrida div {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.ordemCorrida {
-    font-size: 24px;
-    color: #fff;
-}
-
-.topoCardCorrida div p {
-    font-size: 18px;
-    color: #b0b5be;
-}
-
-.mainCardCorrida {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.bandeiraCorrida {
-    border-radius: 10px;
-}
-
-.nomeGrandePremio {
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.nomeCircuito {
-    font-size: 18px;
-}
-
-.circuitoCardCorrida {
-    margin-top: 30px;
-}
-
-/* SWIPER */
 
 /* Ações do cabeçalho */
 
@@ -104,6 +60,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 12px;
+    min-width: 0;
 }
 
 .navegacaoCorridas {
@@ -113,39 +70,251 @@
     gap: 10px;
 }
 
-/* Estilo dos botões */
-
 .btnCorridaAnterior,
 .btnProximaCorrida {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 40px;
-    height: 40px;
-
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     background-color: #0b131b;
     color: #c2c6c9;
-
     border: 1px solid #1f2a33;
     border-radius: 8px;
-
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
 }
-
-/* Hover */
-
-.btnCorridaAnterior:hover:not(:disabled),
-.btnProximaCorrida:hover:not(:disabled) {
-    background-color: #cb1728;
-    border-color: #cb1728;
-    color: #fff;
-}
-
-/* Botões desabilitados */
 
 .navegacaoCorridas .swiper-button-disabled {
     opacity: 0.35;
     cursor: not-allowed;
+}
+
+/* Swiper */
+
+.containerCorridas {
+    width: 100%;
+    min-width: 0;
+}
+
+.swiperCorridas {
+    width: 100%;
+    min-width: 0;
+}
+
+.swiperCorridas .swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiperCorridas .swiper-slide {
+    display: flex;
+    min-width: 0;
+    height: auto;
+}
+
+/* Cards */
+
+.cardCorrida {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #5b5f679f;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.cardCorrida > a {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    color: #c2c6c9;
+    text-decoration: none;
+}
+
+.topoCardCorrida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.topoCardCorrida > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    min-width: 0;
+}
+
+.topoCardCorrida > svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.ordemCorrida {
+    flex-shrink: 0;
+    font-size: 24px;
+    color: #fff;
+}
+
+.topoCardCorrida > div > p {
+    color: #b0b5be;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.mainCardCorrida {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.mainCardCorrida > div {
+    min-width: 0;
+}
+
+.bandeiraCorrida {
+    flex-shrink: 0;
+    width: 48px;
+    height: 34px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.nomeGrandePremio {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.nomeCircuito {
+    margin-top: 6px;
+    font-size: 16px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+}
+
+.circuitoCardCorrida {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.circuitoCardCorrida img {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: 120px;
+    object-fit: contain;
+}
+
+/* Foco dentro do card para evitar corte pelo overflow. */
+
+.cardCorrida > a:focus-visible {
+    outline: 2px solid #fa1931;
+    outline-offset: -2px;
+    border-radius: 4px;
+}
+
+.linkTopoCorridas:focus-visible,
+.navegacaoCorridas button:focus-visible {
+    outline: 2px solid #fa1931;
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .btnCorridaAnterior:hover:not(:disabled),
+    .btnProximaCorrida:hover:not(:disabled) {
+        background-color: #cb1728;
+        border-color: #cb1728;
+        color: #fff;
+    }
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+    .topoCorridas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .tituloCorridas {
+        font-size: 22px;
+    }
+
+    .infosTopoCorridas p {
+        font-size: 16px;
+    }
+
+    .acoesTopoCorridas {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .linkTopoCorridas {
+        justify-content: flex-start;
+        width: fit-content;
+        max-width: 100%;
+        padding-left: 0;
+        font-size: 16px;
+    }
+
+    .navegacaoCorridas {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardCorrida {
+        padding: 16px;
+    }
+
+    .ordemCorrida {
+        font-size: 22px;
+    }
+
+    .topoCardCorrida > div > p {
+        font-size: 14px;
+    }
+
+    .mainCardCorrida {
+        gap: 12px;
+    }
+
+    .nomeGrandePremio {
+        font-size: 18px;
+    }
+
+    .nomeCircuito {
+        font-size: 15px;
+    }
+
+    .circuitoCardCorrida {
+        padding-top: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btnCorridaAnterior,
+    .btnProximaCorrida {
+        transition: none;
+    }
 }

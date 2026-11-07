@@ -1,47 +1,206 @@
+.homeCTA,
+.homeCTA * {
+    box-sizing: border-box;
+}
+
+.homeCTA {
+    min-width: 0;
+    overflow-x: clip;
+}
+
 .divHomeCTA {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
+    min-width: 0;
     padding: 20px;
-    background-image: linear-gradient(to right, #00000093 0%, #000000ad 5%, #040a11 100%), url('/assets/bannerCTA.webp');
+    background-image:
+        linear-gradient(
+            to right,
+            #00000093 0%,
+            #000000ad 5%,
+            #040a11 100%
+        ),
+        url('/assets/bannerCTA.webp');
     background-position: center;
     background-size: cover;
     border: 1px solid #5b5f6742;
     border-radius: 10px;
 }
 
+.tituloCTA,
+.descCTA,
+.linkCTA {
+    min-width: 0;
+}
+
+.tituloCTA {
+    flex: 1.2;
+}
+
+.tituloCTA img {
+    display: block;
+    max-width: 100%;
+    height: 50px;
+    object-fit: contain;
+}
+
 .tituloCTA h2 {
     margin-top: 10px;
     text-transform: uppercase;
     font-size: 30px;
+    line-height: 1.3;
+    overflow-wrap: break-word;
 }
 
 .tituloCTA h2 span {
     color: #ec1e36;
 }
 
+.descCTA {
+    flex: 1;
+}
+
 .descCTA p {
     font-size: 20px;
+    line-height: 1.5;
     color: #878c97;
+    overflow-wrap: break-word;
+}
+
+.linkCTA {
+    flex-shrink: 0;
 }
 
 .linkCTA a {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 50px;
+    padding: 12px 20px;
+    border-radius: 10px;
     background-color: #f81f36;
     color: #fcc9d0;
-    gap: 20px;
-    padding: 5px 20px;
-    border-radius: 10px;
-    margin-right: 50px;
     font-size: 20px;
+    line-height: 1.4;
+    text-align: center;
     text-decoration: none;
     font-weight: 800;
-    transition: scale 0.5s ease, background-color 0.5s ease, box-shadow 1s ease;
+    transition:
+        scale 0.5s ease,
+        background-color 0.5s ease,
+        box-shadow 1s ease;
 }
 
-.linkCTA a:hover {
-    scale: 1.05;
-    background-color: transparent;
-    box-shadow: 0px 0px 10px 2px #751821;
+.linkCTA a svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.linkCTA a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+@media (hover: hover) {
+    .linkCTA a:hover {
+        scale: 1.05;
+        background-color: transparent;
+        box-shadow: 0 0 10px 2px #751821;
+    }
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1599px) {
+    .divHomeCTA {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .tituloCTA {
+        grid-column: 1 / -1;
+    }
+
+    .tituloCTA h2 br,
+    .descCTA p br {
+        display: none;
+    }
+
+    .tituloCTA h2 {
+        font-size: 28px;
+    }
+
+    .descCTA p {
+        font-size: 18px;
+    }
+
+    .linkCTA a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .divHomeCTA {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .tituloCTA {
+        grid-column: auto;
+    }
+
+    .tituloCTA h2 {
+        font-size: 26px;
+    }
+
+    .linkCTA {
+        justify-self: start;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .divHomeCTA {
+        gap: 16px;
+        padding: 20px 16px;
+        background-position: left;
+    }
+
+    .tituloCTA h2 {
+        font-size: 22px;
+    }
+
+    .descCTA p {
+        font-size: 16px;
+    }
+
+    .linkCTA {
+        justify-self: stretch;
+    }
+
+    .linkCTA a {
+        width: 100%;
+        gap: 12px;
+        padding-inline: 12px;
+        font-size: 16px;
+    }
+
+    .linkCTA a:hover {
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .linkCTA a {
+        transition: none;
+    }
+
+    .linkCTA a:hover {
+        scale: 1;
+    }
 }
