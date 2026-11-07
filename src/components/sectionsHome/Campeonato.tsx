@@ -1,22 +1,8 @@
 import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import '../../styles/home/Campeonato.css'
-
-const pilotos = [
-    { id: 1, posicao: 1, foto: '/assets/images/pilotos/landoNorris.webp', nome: 'L. Norris', equipe: 'McLaren', pontos: 423 },
-    { id: 2, posicao: 2, foto: '/assets/images/pilotos/maxVerstappen.png', nome: 'M. Verstappen', equipe: 'Red Bull', pontos: 421 },
-    { id: 3, posicao: 3, foto: '/assets/images/pilotos/oscarPiastri.webp', nome: 'O. Piastri', equipe: 'McLaren', pontos: 410 },
-    { id: 4, posicao: 4, foto: '/assets/images/pilotos/georgeRussell.webp', nome: 'G. Russell', equipe: 'Mercedes', pontos: 319 },
-    { id: 5, posicao: 5, foto: '/assets/images/pilotos/charlesLeclerc.webp', nome: 'C. Leclerc', equipe: 'Ferrari', pontos: 242 },
-]
-
-const construtores = [
-    { id: 1, posicao: 1, logo: '/assets/images/construtores/mcLaren.png', equipe: 'McLaren', pontos: 833 },
-    { id: 2, posicao: 2, logo: '/assets/images/construtores/mercedes.png', equipe: 'Mercedes', pontos: 469 },
-    { id: 3, posicao: 3, logo: '/assets/images/construtores/redBull.png', equipe: 'Red Bull', pontos: 451 },
-    { id: 4, posicao: 4, logo: '/assets/images/construtores/ferrari.png', equipe: 'Ferrari', pontos: 398 },
-    { id: 5, posicao: 5, logo: '/assets/images/construtores/williams.png', equipe: 'Williams', pontos: 137 },
-]
+import { pilotos, construtores } from '../../data/campeonato';
+import { ultimaCorrida } from '../../data/ultimaCorrida';
 
 export default function Campeonato() {
     const reduzirMovimento = useReducedMotion()
@@ -146,10 +132,11 @@ export default function Campeonato() {
                         <div className="infosUltimaCorrida">
                             <h3>Última corrida</h3>
                             <div className="detalhesUltimaCorrida">
-                                <img src="/assets/images/bandeiras/abuDhabi.png" alt="" height={50} />
+                                <img src={ultimaCorrida.bandeira} alt="" height={50} />
+
                                 <div className="infosDetalhesUltimaCorrida">
-                                    <h4>GP de Abu Dhabi</h4>
-                                    <p>Yas Marina - 05 - 07 DEZ 2025</p>
+                                    <h4>{ultimaCorrida.nome}</h4>
+                                    <p>{ultimaCorrida.circuito} - {ultimaCorrida.data}</p>
                                 </div>
                             </div>
                             <a href="" className="linkUltimaCorrida">
@@ -161,30 +148,25 @@ export default function Campeonato() {
                         <div className="resultadosUltimaCorrida">
                             <h4 id="titulo-resultados-ultima-corrida">Resultado</h4>
                             <ul aria-labelledby="titulo-resultados-ultima-corrida">
-                                <li className="resultadoPiloto">
-                                    <div>
-                                        <p>1</p>
-                                        <img src="/assets/images/pilotos/maxVerstappen.png" alt="" height={50} />
-                                        <div><h5>M. Verstappen</h5></div>
-                                    </div>
-                                    <span>1:26:07.469</span>
-                                </li>
-                                <li className="resultadoPiloto">
-                                    <div>
-                                        <p>2</p>
-                                        <img src="/assets/images/pilotos/oscarPiastri.webp" alt="" height={50} />
-                                        <div><h5>O. Piastri</h5></div>
-                                    </div>
-                                    <span>+12.594</span>
-                                </li>
-                                <li className="resultadoPiloto">
-                                    <div>
-                                        <p>3</p>
-                                        <img src="/assets/images/pilotos/landoNorris.webp" alt="" height={50} />
-                                        <div><h5>L. Norris</h5></div>
-                                    </div>
-                                    <span>+16.572</span>
-                                </li>
+                                {ultimaCorrida.resultados.map((resultado) => (
+                                    <li className="resultadoPiloto" key={resultado.id}>
+                                        <div>
+                                            <p>{resultado.posicao}</p>
+
+                                            <img
+                                                src={resultado.foto}
+                                                alt=""
+                                                height={50}
+                                            />
+
+                                            <div>
+                                                <h5>{resultado.nome}</h5>
+                                            </div>
+                                        </div>
+
+                                        <span>{resultado.tempo}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </motion.div>
@@ -192,14 +174,25 @@ export default function Campeonato() {
                     <motion.div className="cardVoltaRapida" variants={cardVariants}>
                         <h3>Melhor volta da corrida</h3>
                         <div className="infosVoltaRapida">
-                            <img src="/assets/images/pilotos/charlesLeclerc.webp" alt="" height={50} />
+                            <img
+                                src={ultimaCorrida.voltaRapida.foto}
+                                alt=""
+                                height={50}
+                            />
+
                             <div>
-                                <h4>Charles Leclerc</h4>
-                                <p>Ferrari</p>
+                                <h4>{ultimaCorrida.voltaRapida.piloto}</h4>
+                                <p>{ultimaCorrida.voltaRapida.equipe}</p>
                             </div>
                         </div>
-                        <p className="tempoVoltaRapida">1:26.725</p>
-                        <p className="infosVoltaComposto">Volta 45 - Composto Médio</p>
+
+                        <p className="tempoVoltaRapida">
+                            {ultimaCorrida.voltaRapida.tempo}
+                        </p>
+
+                        <p className="infosVoltaComposto">
+                            Volta {ultimaCorrida.voltaRapida.volta} - Composto {ultimaCorrida.voltaRapida.composto}
+                        </p>
                     </motion.div>
                 </motion.div>
             </div>

@@ -1,6 +1,8 @@
 import { ArrowRight, ChartNoAxesCombined, TrendingUp } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
+import { insights } from '../../data/insights';
+
 import '../../styles/home/Insights.css';
 
 export default function Insights() {
@@ -30,6 +32,12 @@ export default function Insights() {
         }
     };
 
+    const iconesInsight = {
+        ritmo: TrendingUp,
+        consistencia: ChartNoAxesCombined,
+        estrategia: ChartNoAxesCombined
+    };
+
     return (
         <section className="performanceInsights section" aria-labelledby="titulo-insights">
             <div className="topoSection">
@@ -51,50 +59,35 @@ export default function Insights() {
                 initial={reduzirMovimento ? false : "hidden"}
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}>
-                <motion.div className="cardPerformance"
-                    variants={cardVariants}>
-                    <div className="topoCardPerformance">
-                        <TrendingUp aria-hidden="true" />
-                        <span>Ritmo de Corrida</span>
-                    </div>
-                    <div className="mainCardPerformance">
-                        <div className="textoCardPerformance">
-                            <h3>McLaren se destacou no ritmo em 2025</h3>
-                            <p>A equipe liderou análises de desempenho médio da temporada, consolidando sua competitividade ao longo do campeonato.</p>
-                        </div>
-                        <img src="/assets/images/estastisticas/graficoBarrasHome.png" alt="" loading="lazy" />
-                    </div>
-                </motion.div>
+                {insights.map((insight) => {
+                    const Icone = iconesInsight[insight.tipo];
 
-                <motion.div className="cardPerformance"
-                    variants={cardVariants}>
-                    <div className="topoCardPerformance">
-                        <ChartNoAxesCombined aria-hidden="true" />
-                        <span>Consistência</span>
-                    </div>
-                    <div className="mainCardPerformance">
-                        <div className="textoCardPerformance">
-                            <h3>Consistência de ritmo ao longo da temporada</h3>
-                            <p>Compare a variação dos tempos de volta dos pilotos para identificar quem manteve o ritmo mais estável.</p>
-                        </div>
-                        <img src="/assets/images/estastisticas/graficoLinhasHome.png" alt="" loading="lazy" />
-                    </div>
-                </motion.div>
+                    return (
+                        <motion.div
+                            key={insight.id}
+                            className="cardPerformance"
+                            variants={cardVariants}
+                        >
+                            <div className="topoCardPerformance">
+                                <Icone aria-hidden="true" />
+                                <span>{insight.categoria}</span>
+                            </div>
 
-                <motion.div className="cardPerformance"
-                    variants={cardVariants}>
-                    <div className="topoCardPerformance">
-                        <ChartNoAxesCombined aria-hidden="true" />
-                        <span>Estratégia</span>
-                    </div>
-                    <div className="mainCardPerformance">
-                        <div className="textoCardPerformance">
-                            <h3>Estratégias de uma parada se destacaram em 2025</h3>
-                            <p>A estratégia de uma parada esteve presente em grande parte das vitórias, mas sua eficácia variou conforme o circuito e as condições de corrida.</p>
-                        </div>
-                        <img src="/assets/images/estastisticas/graficoPizzaHome.png" alt="" loading="lazy" />
-                    </div>
-                </motion.div>
+                            <div className="mainCardPerformance">
+                                <div className="textoCardPerformance">
+                                    <h3>{insight.titulo}</h3>
+                                    <p>{insight.descricao}</p>
+                                </div>
+
+                                <img
+                                    src={insight.imagem}
+                                    alt=""
+                                    loading="lazy"
+                                />
+                            </div>
+                        </motion.div>
+                    );
+                })}
             </motion.div>
         </section>
     );
