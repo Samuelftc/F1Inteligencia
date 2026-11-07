@@ -3,11 +3,11 @@ import { motion, useReducedMotion } from 'motion/react'
 import '../../styles/home/Campeonato.css'
 
 const pilotos = [
-    { id: 1, posicao: 1, foto: '/assets/images/pilotos/landoNorris.png', nome: 'L. Norris', equipe: 'McLaren', pontos: 423 },
+    { id: 1, posicao: 1, foto: '/assets/images/pilotos/landoNorris.webp', nome: 'L. Norris', equipe: 'McLaren', pontos: 423 },
     { id: 2, posicao: 2, foto: '/assets/images/pilotos/maxVerstappen.png', nome: 'M. Verstappen', equipe: 'Red Bull', pontos: 421 },
-    { id: 3, posicao: 3, foto: '/assets/images/pilotos/oscarPiastri.png', nome: 'O. Piastri', equipe: 'McLaren', pontos: 410 },
-    { id: 4, posicao: 4, foto: '/assets/images/pilotos/georgeRussell.png', nome: 'G. Russell', equipe: 'Mercedes', pontos: 319 },
-    { id: 5, posicao: 5, foto: '/assets/images/pilotos/charlesLeclerc.png', nome: 'C. Leclerc', equipe: 'Ferrari', pontos: 242 },
+    { id: 3, posicao: 3, foto: '/assets/images/pilotos/oscarPiastri.webp', nome: 'O. Piastri', equipe: 'McLaren', pontos: 410 },
+    { id: 4, posicao: 4, foto: '/assets/images/pilotos/georgeRussell.webp', nome: 'G. Russell', equipe: 'Mercedes', pontos: 319 },
+    { id: 5, posicao: 5, foto: '/assets/images/pilotos/charlesLeclerc.webp', nome: 'C. Leclerc', equipe: 'Ferrari', pontos: 242 },
 ]
 
 const construtores = [
@@ -172,7 +172,7 @@ export default function Campeonato() {
                                 <li className="resultadoPiloto">
                                     <div>
                                         <p>2</p>
-                                        <img src="/assets/images/pilotos/oscarPiastri.png" alt="" height={50} />
+                                        <img src="/assets/images/pilotos/oscarPiastri.webp" alt="" height={50} />
                                         <div><h5>O. Piastri</h5></div>
                                     </div>
                                     <span>+12.594</span>
@@ -180,7 +180,7 @@ export default function Campeonato() {
                                 <li className="resultadoPiloto">
                                     <div>
                                         <p>3</p>
-                                        <img src="/assets/images/pilotos/landoNorris.png" alt="" height={50} />
+                                        <img src="/assets/images/pilotos/landoNorris.webp" alt="" height={50} />
                                         <div><h5>L. Norris</h5></div>
                                     </div>
                                     <span>+16.572</span>
@@ -192,7 +192,7 @@ export default function Campeonato() {
                     <motion.div className="cardVoltaRapida" variants={cardVariants}>
                         <h3>Melhor volta da corrida</h3>
                         <div className="infosVoltaRapida">
-                            <img src="/assets/images/pilotos/charlesLeclerc.png" alt="" height={50} />
+                            <img src="/assets/images/pilotos/charlesLeclerc.webp" alt="" height={50} />
                             <div>
                                 <h4>Charles Leclerc</h4>
                                 <p>Ferrari</p>

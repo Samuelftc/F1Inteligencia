@@ -63,7 +63,7 @@ export default function Ferramentas() {
                                         rgba(11, 19, 27, 0.3) 60%,
                                         transparent 100%
                                     ),
-                                    url('/assets/cardRaceExplorerHome.png')
+                                    url('/assets/cardRaceExplorerHome.webp')
                                     `
                             }}
                         >
@@ -121,7 +121,7 @@ export default function Ferramentas() {
                                         rgba(11, 19, 27, 0.3) 60%,
                                         transparent 100%
                                     ),
-                                    url('/assets/cardEstrategiaHome.png')
+                                    url('/assets/cardEstrategiaHome.webp')
                                     `
                             }}
                         >

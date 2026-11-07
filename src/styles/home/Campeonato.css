@@ -103,7 +103,7 @@
     display: flex;
     justify-content: space-between;
     background-image: linear-gradient(to left, rgba(17, 16, 16, 0.61) 0%, rgba(0, 0, 0, 0.1) 100%),
-        url('/assets/bannerUltimaCorrida.png');
+        url('/assets/bannerUltimaCorrida.webp');
     background-size: cover;
     border: 1px solid #1f2a33;
     border-radius: 10px;

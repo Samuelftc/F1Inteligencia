@@ -43,7 +43,7 @@ export default function CorridasHome() {
             nomeGrandePremio: "Japão",
             nomeCircuito: "Suzuka",
             pngCircuito: "/assets/images/circuitos/japao.png",
-            imagemFundo: "/assets/images/paisagens/japao.png"
+            imagemFundo: "/assets/images/paisagens/japao.webp"
         },
         {
             id: 4,
@@ -127,7 +127,7 @@ export default function CorridasHome() {
             nomeGrandePremio: "Canadá",
             nomeCircuito: "Gilles-Villeneuve",
             pngCircuito: "/assets/images/circuitos/canada.png",
-            imagemFundo: "/assets/images/paisagens/canada.png"
+            imagemFundo: "/assets/images/paisagens/canada.webp"
         }
     ];
 

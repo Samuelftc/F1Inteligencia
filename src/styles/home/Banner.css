@@ -1,7 +1,7 @@
 .bannerHome {
     width: 100%;
     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.482) 0%, rgba(0, 0, 0, 0.1) 100%),
-        url('/assets/bannerHome.png');
+        url('/assets/bannerHome.webp');
     background-size: cover;
     background-position: center;
     padding: 20px;

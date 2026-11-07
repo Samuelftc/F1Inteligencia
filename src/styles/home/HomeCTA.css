@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-image: linear-gradient(to right, #00000093 0%, #000000ad 5%, #040a11 100%), url('/assets/bannerCTA.png');
+    background-image: linear-gradient(to right, #00000093 0%, #000000ad 5%, #040a11 100%), url('/assets/bannerCTA.webp');
     background-position: center;
     background-size: cover;
     border: 1px solid #5b5f6742;
