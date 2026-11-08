@@ -1,8 +1,3 @@
-.exploreFerramentas,
-.exploreFerramentas * {
-    box-sizing: border-box;
-}
-
 .exploreFerramentas {
     min-width: 0;
 }
@@ -97,18 +92,7 @@
 /* RESPONSIVO */
 
 /* Duas colunas considerando o espaço da sidebar. */
-@media (min-width: 1025px) and (max-width: 1599px) {
-    .ferramentas {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .infosFerramenta {
-        padding: 24px 0 24px 24px;
-    }
-}
-
-/* Tablet com a sidebar recolhida. */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1599px) {
     .ferramentas {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -148,10 +132,6 @@
 
     .textoCardFerramenta p {
         font-size: 14px;
-    }
-
-    .cardFerramenta:hover {
-        scale: 1;
     }
 }
 

@@ -16,7 +16,6 @@ html, body {
 
 /* Evita barra de rolagem horizontal causada por elementos que escapam do viewport em mobile */
 body {
-  overflow-x: hidden;
   width: 100%;
 }
 

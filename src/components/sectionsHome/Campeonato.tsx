@@ -13,15 +13,12 @@ export default function Campeonato() {
         const container = campeonatosRef.current
         const card = container?.children.item(indice)
 
-        if (!container || !(card instanceof HTMLElement)) return
+        if (!(card instanceof HTMLElement)) return
 
-        const distancia =
-            card.getBoundingClientRect().left -
-            container.getBoundingClientRect().left
-
-        container.scrollTo({
-            left: container.scrollLeft + distancia,
+        card.scrollIntoView({
             behavior: reduzirMovimento ? 'instant' : 'smooth',
+            block: 'nearest',
+            inline: 'start',
         })
     }
 

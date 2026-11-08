@@ -1,8 +1,3 @@
-.corridasHome,
-.corridasHome * {
-    box-sizing: border-box;
-}
-
 .corridasHome {
     min-width: 0;
 }

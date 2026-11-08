@@ -1,8 +1,3 @@
-.performanceInsights,
-.performanceInsights * {
-    box-sizing: border-box;
-}
-
 .performanceInsights {
     min-width: 0;
 }
@@ -87,24 +82,7 @@
 /* RESPONSIVO */
 
 /* Considera o espaço ocupado pela sidebar no desktop. */
-@media (min-width: 1025px) and (max-width: 1599px) {
-    .performances {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .mainCardPerformance {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .mainCardPerformance > img {
-        align-self: center;
-        width: 100%;
-    }
-}
-
-/* Tablet: sidebar recolhida, dois cards por linha. */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1599px) {
     .performances {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

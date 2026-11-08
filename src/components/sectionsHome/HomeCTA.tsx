@@ -20,11 +20,11 @@ export default function HomeCTA() {
             >
                 <div className="tituloCTA">
                     <img src="/assets/logoF1Intelligence.png" alt="" height={50} />
-                    <h2 id="titulo-home-cta">Transforme sua paixão por F1 <br />em <span>conhecimento.</span></h2>
+                    <h2 id="titulo-home-cta">Transforme sua paixão por F1 em <span>conhecimento.</span></h2>
                 </div>
 
                 <div className="descCTA">
-                    <p>Acesse análises, explore dados e descubra histórias <br />por trás de cada corrida da temporada 2025.</p>
+                    <p>Acesse análises, explore dados e descubra histórias por trás de cada corrida da temporada 2025.</p>
                 </div>
 
                 <div className="linkCTA">

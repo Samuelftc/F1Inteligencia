@@ -3,11 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import { primeirasCorridas } from '../../data/corridas';
 
+import { useReducedMotion } from "motion/react";
+
 import "swiper/css";
 import 'swiper/css/navigation';
 import '../../styles/home/Corridas.css';
 
 export default function CorridasHome() {
+    const reduzirMovimento = useReducedMotion();
+
     return (
         <section className="corridasHome section" aria-labelledby="titulo-corridas">
             <div className="topoCorridas">
@@ -70,7 +74,7 @@ export default function CorridasHome() {
                             slidesPerGroup: 5,
                         },
                     }}
-                    speed={600}
+                    speed={reduzirMovimento ? 0 : 600}
                     navigation={{
                         prevEl: ".btnCorridaAnterior",
                         nextEl: ".btnProximaCorrida"

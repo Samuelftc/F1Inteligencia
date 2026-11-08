@@ -63,7 +63,7 @@ export default function Insights() {
                     const Icone = iconesInsight[insight.tipo];
 
                     return (
-                        <motion.div
+                        <motion.article
                             key={insight.id}
                             className="cardPerformance"
                             variants={cardVariants}
@@ -85,7 +85,7 @@ export default function Insights() {
                                     loading="lazy"
                                 />
                             </div>
-                        </motion.div>
+                        </motion.article>
                     );
                 })}
             </motion.div>

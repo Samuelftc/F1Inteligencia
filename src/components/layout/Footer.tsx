@@ -96,7 +96,7 @@ export default function Footer() {
 
             <div className="creditosFooter">
                 <div className="divCopyright">
-                    <p className="copyright">&copy; 2026 F1 Intelligence | Desenvolvido por <a href="https://samuelferreiradev.netlify.app/" aria-label="Site Portfolio de Samuel Ferreira (abre em nova aba)" target="_blank" rel="noopener noreferrer">Samuel Ferreira</a></p>
+                    <p className="copyright">&copy; 2026 F1 Intelligence | Desenvolvido por <a href="https://samuelferreiradev.netlify.app/" aria-label="Portfólio de Samuel Ferreira (abre em nova aba)" target="_blank" rel="noopener noreferrer">Samuel Ferreira</a></p>
                     <p className="descMenorFooter">Projeto independente, sem vínculo oficial com a Fórmula 1.</p>
                 </div>
 
