@@ -1,5 +1,6 @@
 import type { ClassificacaoPiloto, ClassificacaoConstrutor, RespostaCampeonato } from "../types/campeonato.types.js";
 import { respostaJolpicaPilotosSchema, respostaJolpicaConstrutoresSchema } from "../schemas/campeonato.schema.js";
+import { ErroAplicacao } from "../errors/ErroAplicacao.js";
 
 /**
  * Consulta a classificação de pilotos de uma temporada
@@ -13,24 +14,54 @@ export async function buscarClassificacaoPilotos(temporada: number): Promise<Res
 
     const url = `https://api.jolpi.ca/ergast/f1/${temporada}/driverstandings.json`;
 
-    const resposta = await fetch(url);
+    let resposta: Response;
 
-    if (!resposta.ok) {
-        throw new Error(
-            `Erro ao buscar classificação: ${resposta.status}`
+    // Tenta consultar a Jolpica, limitando o tempo de espera
+    // da requisição a 10 segundos.
+    try {
+        resposta = await fetch(url, {
+            signal: AbortSignal.timeout(10000)
+        });
+    } catch (erro) {
+        // Captura falhas de conexão ou timeout da requisição.
+        console.error("Falha de comunicação com a Jolpica:", erro);
+
+        throw new ErroAplicacao(
+            502,
+            "Não foi possível conectar à API Jolpica."
         );
     }
 
+    if (!resposta.ok) {
+        throw new ErroAplicacao(
+            502,
+            `A API Jolpica retornou HTTP ${resposta.status}.`
+        );
+    }
+
+
     // unknown indica que ainda não conhecemos
     // nem validamos a estrutura dos dados externos.
-    const dados: unknown = await resposta.json();
+    let dados: unknown;
+
+    try {
+        dados = await resposta.json();
+    } catch {
+        // Captura falhas ao interpretar o corpo da resposta como JSON.
+        throw new ErroAplicacao(
+            502,
+            "A Jolpica retornou um JSON inválido."
+        );
+    }
 
     // Valida a estrutura do JSON recebido da Jolpica.
     // Em caso de sucesso, o Zod infere o tipo dos dados.
     const resultado = respostaJolpicaPilotosSchema.safeParse(dados);
 
     if (!resultado.success) {
-        throw new Error(
+        // Impede o processamento de dados com estrutura inesperada.
+        throw new ErroAplicacao(
+            502,
             "A Jolpica retornou dados em um formato inesperado."
         );
     }
@@ -43,8 +74,10 @@ export async function buscarClassificacaoPilotos(temporada: number): Promise<Res
 
     // Impede o processamento caso não exista classificação.
     if (!lista) {
-        throw new Error(
-            `Classificação indisponível para ${temporada}`
+        // Retorna 404 quando não existe classificação para a temporada.
+        throw new ErroAplicacao(
+            404,
+            `Classificação indisponível para ${temporada}.`
         );
     }
 
@@ -83,20 +116,45 @@ export async function buscarClassificacaoConstrutores(temporada: number): Promis
 
     const url = `https://api.jolpi.ca/ergast/f1/${temporada}/constructorstandings.json`;
 
-    const resposta = await fetch(url);
 
-    if (!resposta.ok) {
-        throw new Error(
-            `Erro ao buscar classificação: ${resposta.status}`
+    let resposta: Response;
+
+    try {
+        resposta = await fetch(url, {
+            signal: AbortSignal.timeout(10000)
+        });
+    } catch (erro) {
+        console.error("Falha de comunicação com a Jolpica:", erro);
+
+        throw new ErroAplicacao(
+            502,
+            "Não foi possível conectar à API Jolpica."
         );
     }
 
-    const dados: unknown = await resposta.json();
+    if (!resposta.ok) {
+        throw new ErroAplicacao(
+            502,
+            `A API Jolpica retornou HTTP ${resposta.status}.`
+        );
+    }
+
+    let dados: unknown;
+
+    try {
+        dados = await resposta.json();
+    } catch {
+        throw new ErroAplicacao(
+            502,
+            "A Jolpica retornou um JSON inválido."
+        );
+    }
 
     const resultado = respostaJolpicaConstrutoresSchema.safeParse(dados);
 
     if (!resultado.success) {
-        throw new Error(
+        throw new ErroAplicacao(
+            502,
             "A Jolpica retornou dados em um formato inesperado."
         );
     }
@@ -106,8 +164,9 @@ export async function buscarClassificacaoConstrutores(temporada: number): Promis
     const lista = dadosJolpica.MRData.StandingsTable.StandingsLists[0];
 
     if (!lista) {
-        throw new Error(
-            `Classificação indisponível para ${temporada}`
+        throw new ErroAplicacao(
+            404,
+            `Classificação indisponível para ${temporada}.`
         );
     }
 

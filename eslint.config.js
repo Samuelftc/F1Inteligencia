@@ -7,10 +7,11 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['**/dist/**', '**/node_modules/**']),
 
+  // Configuração do frontend (React + Vite)
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
 
     extends: [
       js.configs.recommended,
@@ -26,6 +27,29 @@ export default defineConfig([
           jsx: true,
         },
       },
+    },
+  },
+
+  // Configuração do backend (Node.js + Express)
+  {
+    files: ['backend/**/*.{js,ts}'],
+
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+    ],
+
+    languageOptions: {
+      globals: globals.node,
+    },
+
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+        },
+      ],
     },
   },
 ])
