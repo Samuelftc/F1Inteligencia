@@ -11,7 +11,7 @@ export default defineConfig([
 
   // Configuração do frontend (React + Vite)
   {
-    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    files: ['frontend/**/*.{js,jsx,ts,tsx}'],
 
     extends: [
       js.configs.recommended,
