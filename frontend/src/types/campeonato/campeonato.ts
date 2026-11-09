@@ -1,5 +1,5 @@
 export interface PilotoClassificacao {
-    id: number;
+    id: string;
     posicao: number;
     foto: string;
     nome: string;
@@ -8,7 +8,7 @@ export interface PilotoClassificacao {
 }
 
 export interface ConstrutorClassificacao {
-    id: number;
+    id: string;
     posicao: number;
     logo: string;
     equipe: string;

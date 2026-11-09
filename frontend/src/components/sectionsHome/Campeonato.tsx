@@ -1,13 +1,73 @@
-import { useRef } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import '../../styles/home/Campeonato.css'
-import { pilotos, construtores } from '../../data/campeonato'
 import { ultimaCorrida } from '../../data/ultimaCorrida'
 
+import { useEffect, useRef, useState } from 'react'
+import type { PilotoClassificacao, ConstrutorClassificacao } from '../../types/campeonato/campeonato'
+import { buscarClassificacaoPilotos, buscarClassificacaoConstrutores } from '../../services/campeonato/campeonato.service'
+import { adaptarPilotos, adaptarConstrutores } from '../../services/campeonato/campeonato.adapter'
+
 export default function Campeonato() {
+
     const reduzirMovimento = useReducedMotion()
+
+    // Referência ao container HTML utilizado para navegar entre os campeonatos.
     const campeonatosRef = useRef<HTMLDivElement>(null)
+
+    // Armazena as classificações completas de pilotos e construtores.
+    const [pilotos, setPilotos] = useState<PilotoClassificacao[]>([])
+    const [construtores, setConstrutores] = useState<ConstrutorClassificacao[]>([])
+
+    // Controla os estados de carregamento e erro das requisições.
+    const [carregando, setCarregando] = useState(true)
+    const [erro, setErro] = useState<string | null>(null)
+
+    // Busca as classificações quando o componente é montado.
+    useEffect(() => {
+        // Impede atualizações de estado após a limpeza do efeito.
+        let ativo = true
+
+        async function carregarCampeonatos() {
+            try {
+                // Executa as duas requisições concorrentemente.
+                // Se uma falhar, o Promise.all rejeita a operação.
+                const [respostaPilotos, respostaConstrutores] = await Promise.all([
+                    buscarClassificacaoPilotos(2025),
+                    buscarClassificacaoConstrutores(2025)
+                ])
+
+                // Ignora respostas caso o efeito já tenha sido encerrado.
+                if (!ativo) return
+
+                // Converte os dados da API para os modelos utilizados pelo frontend.
+                setPilotos(adaptarPilotos(respostaPilotos.classificacao))
+                setConstrutores(adaptarConstrutores(respostaConstrutores.classificacao))
+
+                // Limpa possíveis erros anteriores após uma consulta bem-sucedida.
+                setErro(null)
+            } catch (erro) {
+                if (!ativo) return
+
+                // Registra o erro técnico e apresenta uma mensagem amigável ao usuário.
+                console.error('Erro ao carregar campeonatos:', erro)
+                setErro('Não foi possível carregar as classificações.')
+            } finally {
+                // Finaliza o carregamento apenas se o efeito continuar ativo.
+                if (ativo) {
+                    setCarregando(false)
+                }
+            }
+        }
+
+        carregarCampeonatos()
+
+        // Cleanup: invalida esta execução quando o efeito é encerrado.
+        // Não cancela as requisições HTTP em andamento.
+        return () => {
+            ativo = false
+        }
+    }, [])
 
     function navegarCampeonatos(indice: number) {
         const container = campeonatosRef.current
@@ -104,26 +164,35 @@ export default function Campeonato() {
                             </thead>
 
                             <tbody className="tabelaCampeonatoBody">
-                                {pilotos.map((piloto) => (
-                                    <tr key={piloto.id}>
-                                        <td className="posicaoTd">
-                                            {piloto.posicao}
+                                {carregando ? (
+                                    <tr>
+                                        <td colSpan={4} role="status">
+                                            Carregando classificação de pilotos...
                                         </td>
-
-                                        <th scope="row">
-                                            <div className="infoTd">
-                                                <img
-                                                    src={piloto.foto}
-                                                    alt=""
-                                                />
-                                                <span>{piloto.nome}</span>
-                                            </div>
-                                        </th>
-
-                                        <td>{piloto.equipe}</td>
-                                        <td>{piloto.pontos}</td>
                                     </tr>
-                                ))}
+                                ) : erro ? (
+                                    <tr>
+                                        <td colSpan={4} role="alert">
+                                            {erro}
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    pilotos.slice(0, 5).map((piloto) => (
+                                        <tr key={piloto.id}>
+                                            <td className="posicaoTd">{piloto.posicao}</td>
+
+                                            <th scope="row">
+                                                <div className="infoTd">
+                                                    {piloto.foto && <img src={piloto.foto} alt="" />}
+                                                    <span>{piloto.nome}</span>
+                                                </div>
+                                            </th>
+
+                                            <td>{piloto.equipe}</td>
+                                            <td>{piloto.pontos}</td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </motion.div>
@@ -158,25 +227,36 @@ export default function Campeonato() {
                             </thead>
 
                             <tbody className="tabelaCampeonatoBody">
-                                {construtores.map((construtor) => (
-                                    <tr key={construtor.id}>
-                                        <td>{construtor.posicao}</td>
-
-                                        <th scope="row">
-                                            <div className="infoTd">
-                                                <img
-                                                    src={construtor.logo}
-                                                    alt=""
-                                                />
-                                                <span>
-                                                    {construtor.equipe}
-                                                </span>
-                                            </div>
-                                        </th>
-
-                                        <td>{construtor.pontos}</td>
+                                {carregando ? (
+                                    <tr>
+                                        <td colSpan={3} role="status">
+                                            Carregando classificação de construtores...
+                                        </td>
                                     </tr>
-                                ))}
+                                ) : erro ? (
+                                    <tr>
+                                        <td colSpan={3} role="alert">
+                                            {erro}
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    construtores.slice(0, 5).map((construtor) => (
+                                        <tr key={construtor.id}>
+                                            <td>{construtor.posicao}</td>
+
+                                            <th scope="row">
+                                                <div className="infoTd">
+                                                    {construtor.logo && (
+                                                        <img src={construtor.logo} alt="" />
+                                                    )}
+                                                    <span>{construtor.equipe}</span>
+                                                </div>
+                                            </th>
+
+                                            <td>{construtor.pontos}</td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </motion.div>
