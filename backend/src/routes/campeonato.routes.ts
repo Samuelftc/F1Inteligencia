@@ -1,4 +1,3 @@
-
 import { Router } from "express";
 import { obterClassificacaoPilotos, obterClassificacaoConstrutores } from "../controllers/campeonato.controller.js";
 
