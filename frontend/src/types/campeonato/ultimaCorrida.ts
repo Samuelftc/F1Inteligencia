@@ -1,9 +1,18 @@
 export interface ResultadoPiloto {
-    id: number;
+    id: string;
     posicao: number;
     nome: string;
     foto: string;
     tempo: string;
+}
+
+export interface UltimaCorrida {
+    nome: string;
+    circuito: string;
+    data: string;
+    bandeira: string;
+    resultados: ResultadoPiloto[];
+    voltaRapida?: VoltaRapida | undefined;
 }
 
 export interface VoltaRapida {
@@ -13,13 +22,4 @@ export interface VoltaRapida {
     tempo: string;
     volta: number;
     composto: string;
-}
-
-export interface UltimaCorrida {
-    nome: string;
-    circuito: string;
-    data: string;
-    bandeira: string;
-    resultados: ResultadoPiloto[];
-    voltaRapida: VoltaRapida;
 }

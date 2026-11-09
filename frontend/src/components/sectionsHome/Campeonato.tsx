@@ -1,12 +1,16 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import '../../styles/home/Campeonato.css'
-import { ultimaCorrida } from '../../data/ultimaCorrida'
+// import { ultimaCorrida } from '../../data/ultimaCorrida'
 
 import { useEffect, useRef, useState } from 'react'
 import type { PilotoClassificacao, ConstrutorClassificacao } from '../../types/campeonato/campeonato'
 import { buscarClassificacaoPilotos, buscarClassificacaoConstrutores } from '../../services/campeonato/campeonato.service'
 import { adaptarPilotos, adaptarConstrutores } from '../../services/campeonato/campeonato.adapter'
+
+import type { UltimaCorrida } from '../../types/campeonato/ultimaCorrida'
+import { buscarUltimaCorrida } from '../../services/campeonato/ultimaCorrida.service'
+import { adaptarUltimaCorrida } from '../../services/campeonato/ultimaCorrida.adapter'
 
 export default function Campeonato() {
 
@@ -19,9 +23,14 @@ export default function Campeonato() {
     const [pilotos, setPilotos] = useState<PilotoClassificacao[]>([])
     const [construtores, setConstrutores] = useState<ConstrutorClassificacao[]>([])
 
+    const [ultimaCorrida, setUltimaCorrida] = useState<UltimaCorrida | null>(null)
+
     // Controla os estados de carregamento e erro das requisições.
-    const [carregando, setCarregando] = useState(true)
-    const [erro, setErro] = useState<string | null>(null)
+    const [carregandoCampeonato, setCarregandoCampeonato] = useState(true)
+    const [erroCampeonato, setErroCampeonato] = useState<string | null>(null)
+
+    const [carregandoUltimaCorrida, setCarregandoUltimaCorrida] = useState(true)
+    const [erroUltimaCorrida, setErroUltimaCorrida] = useState<string | null>(null)
 
     // Busca as classificações quando o componente é montado.
     useEffect(() => {
@@ -45,22 +54,61 @@ export default function Campeonato() {
                 setConstrutores(adaptarConstrutores(respostaConstrutores.classificacao))
 
                 // Limpa possíveis erros anteriores após uma consulta bem-sucedida.
-                setErro(null)
+                setErroCampeonato(null)
             } catch (erro) {
                 if (!ativo) return
 
                 // Registra o erro técnico e apresenta uma mensagem amigável ao usuário.
                 console.error('Erro ao carregar campeonatos:', erro)
-                setErro('Não foi possível carregar as classificações.')
+                setErroCampeonato('Não foi possível carregar as classificações.')
             } finally {
                 // Finaliza o carregamento apenas se o efeito continuar ativo.
                 if (ativo) {
-                    setCarregando(false)
+                    setCarregandoCampeonato(false)
                 }
             }
         }
 
         carregarCampeonatos()
+
+        // Cleanup: invalida esta execução quando o efeito é encerrado.
+        // Não cancela as requisições HTTP em andamento.
+        return () => {
+            ativo = false
+        }
+    }, [])
+
+    useEffect(() => {
+        // Impede atualizações de estado após a limpeza do efeito.
+        let ativo = true
+
+        async function carregarUltimaCorrida() {
+            try {
+                const respostaUltimaCorrida = await buscarUltimaCorrida(2025)
+
+                // Ignora respostas caso o efeito já tenha sido encerrado.
+                if (!ativo) return
+
+                // Converte os dados da API para os modelos utilizados pelo frontend.
+                setUltimaCorrida(adaptarUltimaCorrida(respostaUltimaCorrida.corrida))
+
+                // Limpa possíveis erros anteriores após uma consulta bem-sucedida.
+                setErroUltimaCorrida(null)
+            } catch (erro) {
+                if (!ativo) return
+
+                // Registra o erro técnico e apresenta uma mensagem amigável ao usuário.
+                console.error('Erro ao carregar ultima corrida:', erro)
+                setErroUltimaCorrida('Não foi possível carregar a ultima corrida.')
+            } finally {
+                // Finaliza o carregamento apenas se o efeito continuar ativo.
+                if (ativo) {
+                    setCarregandoUltimaCorrida(false)
+                }
+            }
+        }
+
+        carregarUltimaCorrida()
 
         // Cleanup: invalida esta execução quando o efeito é encerrado.
         // Não cancela as requisições HTTP em andamento.
@@ -164,16 +212,16 @@ export default function Campeonato() {
                             </thead>
 
                             <tbody className="tabelaCampeonatoBody">
-                                {carregando ? (
+                                {carregandoCampeonato ? (
                                     <tr>
                                         <td colSpan={4} role="status">
                                             Carregando classificação de pilotos...
                                         </td>
                                     </tr>
-                                ) : erro ? (
+                                ) : erroCampeonato ? (
                                     <tr>
                                         <td colSpan={4} role="alert">
-                                            {erro}
+                                            {erroCampeonato}
                                         </td>
                                     </tr>
                                 ) : (
@@ -227,16 +275,16 @@ export default function Campeonato() {
                             </thead>
 
                             <tbody className="tabelaCampeonatoBody">
-                                {carregando ? (
+                                {carregandoCampeonato ? (
                                     <tr>
                                         <td colSpan={3} role="status">
                                             Carregando classificação de construtores...
                                         </td>
                                     </tr>
-                                ) : erro ? (
+                                ) : erroCampeonato ? (
                                     <tr>
                                         <td colSpan={3} role="alert">
-                                            {erro}
+                                            {erroCampeonato}
                                         </td>
                                     </tr>
                                 ) : (
@@ -299,61 +347,71 @@ export default function Campeonato() {
                         className="cardUltimaCorrida"
                         variants={cardVariants}
                     >
-                        <div className="infosUltimaCorrida">
-                            <h3>Última corrida</h3>
+                        {carregandoUltimaCorrida ? (
+                            <p>Carregando última corrida...</p>
+                        ) : erroUltimaCorrida ? (
+                            <p role="alert">{erroUltimaCorrida}</p>
+                        ) : ultimaCorrida ? (
+                            <>
+                                <div className="infosUltimaCorrida">
+                                    <h3>Última corrida</h3>
 
-                            <div className="detalhesUltimaCorrida">
-                                <img
-                                    src={ultimaCorrida.bandeira}
-                                    alt=""
-                                    height={50}
-                                />
+                                    <div className="detalhesUltimaCorrida">
+                                        <img
+                                            src={ultimaCorrida.bandeira}
+                                            alt=""
+                                            height={50}
+                                        />
 
-                                <div className="infosDetalhesUltimaCorrida">
-                                    <h4>{ultimaCorrida.nome}</h4>
-                                    <p>
-                                        {ultimaCorrida.circuito} -{' '}
-                                        {ultimaCorrida.data}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <a href="" className="linkUltimaCorrida">
-                                Ver análise completa
-                                <ArrowRight size={20} aria-hidden="true" />
-                            </a>
-                        </div>
-
-                        <div className="resultadosUltimaCorrida">
-                            <h4 id="titulo-resultados-ultima-corrida">
-                                Resultado
-                            </h4>
-
-                            <ul aria-labelledby="titulo-resultados-ultima-corrida">
-                                {ultimaCorrida.resultados.map((resultado) => (
-                                    <li
-                                        className="resultadoPiloto"
-                                        key={resultado.id}
-                                    >
-                                        <div>
-                                            <p>{resultado.posicao}</p>
-
-                                            <img
-                                                src={resultado.foto}
-                                                alt=""
-                                                height={50}
-                                            />
-
-                                            <div>
-                                                <h5>{resultado.nome}</h5>
-                                            </div>
+                                        <div className="infosDetalhesUltimaCorrida">
+                                            <h4>{ultimaCorrida.nome}</h4>
+                                            <p>
+                                                {ultimaCorrida.circuito} -{' '}
+                                                {ultimaCorrida.data}
+                                            </p>
                                         </div>
+                                    </div>
 
-                                        <span>{resultado.tempo}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                                    <a href="" className="linkUltimaCorrida">
+                                        Ver análise completa
+                                        <ArrowRight size={20} aria-hidden="true" />
+                                    </a>
+                                </div>
+
+                                <div className="resultadosUltimaCorrida">
+                                    <h4 id="titulo-resultados-ultima-corrida">
+                                        Resultado
+                                    </h4>
+
+                                    <ul aria-labelledby="titulo-resultados-ultima-corrida">
+                                        {ultimaCorrida.resultados.slice(0, 3).map((resultado) => (
+                                            <li
+                                                className="resultadoPiloto"
+                                                key={resultado.id}
+                                            >
+                                                <div>
+                                                    <p>{resultado.posicao}</p>
+
+                                                    <img
+                                                        src={resultado.foto}
+                                                        alt=""
+                                                        height={50}
+                                                    />
+
+                                                    <div>
+                                                        <h5>{resultado.nome}</h5>
+                                                    </div>
+                                                </div>
+
+                                                <span>{resultado.tempo}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </>
+                        ) : (
+                            <p>Nenhuma corrida disponível.</p>
+                        )}
                     </motion.div>
 
                     <motion.div
@@ -364,24 +422,24 @@ export default function Campeonato() {
 
                         <div className="infosVoltaRapida">
                             <img
-                                src={ultimaCorrida.voltaRapida.foto}
+                                src={ultimaCorrida?.voltaRapida?.foto}
                                 alt=""
                                 height={50}
                             />
 
                             <div>
-                                <h4>{ultimaCorrida.voltaRapida.piloto}</h4>
-                                <p>{ultimaCorrida.voltaRapida.equipe}</p>
+                                <h4>{ultimaCorrida?.voltaRapida?.piloto}</h4>
+                                <p>{ultimaCorrida?.voltaRapida?.equipe}</p>
                             </div>
                         </div>
 
                         <p className="tempoVoltaRapida">
-                            {ultimaCorrida.voltaRapida.tempo}
+                            {ultimaCorrida?.voltaRapida?.tempo}
                         </p>
 
                         <p className="infosVoltaComposto">
-                            Volta {ultimaCorrida.voltaRapida.volta} - Composto{' '}
-                            {ultimaCorrida.voltaRapida.composto}
+                            Volta {ultimaCorrida?.voltaRapida?.volta} - Composto{' '}
+                            {ultimaCorrida?.voltaRapida?.composto}
                         </p>
                     </motion.div>
                 </motion.div>

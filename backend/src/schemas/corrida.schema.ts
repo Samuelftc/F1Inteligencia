@@ -18,6 +18,9 @@ const ultimaCorridaSchema = z.object({
     Circuit: z.object({
         circuitId: z.string(),
         circuitName: z.string(),
+        Location: z.object({
+            country: z.string()
+        })
     }),
     raceName: z.string(),
     date: z.string(),

@@ -74,6 +74,7 @@ export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUl
         nome: lista.raceName,
         idCircuito: lista.Circuit.circuitId,
         circuito: lista.Circuit.circuitName,
+        pais: lista.Circuit.Location.country,
         data: lista.date,
         resultados
     }

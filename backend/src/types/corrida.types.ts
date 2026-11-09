@@ -9,6 +9,7 @@ export interface UltimaCorrida {
     nome: string,
     idCircuito: string,
     circuito: string,
+    pais: string,
     data: string,
     resultados: ResultadoPiloto[]
 }
