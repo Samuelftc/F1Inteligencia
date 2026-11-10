@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+const melhorVoltaSchema = z.object({
+    rank: z.string().regex(/^\d+$/),
+    lap: z.string().regex(/^\d+$/),
+    Time: z.object({
+        time: z.string()
+    })
+});
+
 const resultadoPilotoSchema = z.object({
     position: z.string().regex(/^\d+$/),
     Driver: z.object({
@@ -7,9 +15,13 @@ const resultadoPilotoSchema = z.object({
         givenName: z.string(),
         familyName: z.string()
     }),
+    Constructor: z.object({
+        name: z.string()
+    }),
     Time: z.object({
         time: z.string()
-    }).optional()
+    }).optional(),
+    FastestLap: melhorVoltaSchema.optional()
 });
 
 
@@ -27,7 +39,7 @@ const ultimaCorridaSchema = z.object({
     Results: z.array(resultadoPilotoSchema)
 });
 
-export const respostaUltimaCorridaSchema = z.object({
+export const respostaCorridaSchema = z.object({
     MRData: z.object({
         RaceTable: z.object({
             season: z.string().regex(/^\d+$/),

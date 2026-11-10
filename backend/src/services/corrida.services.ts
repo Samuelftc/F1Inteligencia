@@ -1,9 +1,8 @@
-import { ResultadoPiloto, UltimaCorrida, RespostaUltimaCorrida } from "../types/corrida.types.js";
-import { respostaUltimaCorridaSchema } from "../schemas/corrida.schema.js";
+import { ResultadoPiloto, UltimaCorrida, RespostaUltimaCorrida, RespostaMelhorVolta, MelhorVolta } from "../types/corrida.types.js";
+import { respostaCorridaSchema } from "../schemas/corrida.schema.js";
 import { ErroAplicacao } from "../errors/ErroAplicacao.js";
 
-export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUltimaCorrida> {
-
+async function consultarResultadosCorrida(temporada: number) {
     const url = `https://api.jolpi.ca/ergast/f1/${temporada}/last/results.json`;
 
     let resposta: Response;
@@ -41,7 +40,7 @@ export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUl
         );
     }
 
-    const resultado = respostaUltimaCorridaSchema.safeParse(dados);
+    const resultado = respostaCorridaSchema.safeParse(dados);
 
     if (!resultado.success) {
         // Impede o processamento de dados com estrutura inesperada.
@@ -63,7 +62,18 @@ export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUl
         );
     }
 
-    const resultados: ResultadoPiloto[] = lista.Results.map((piloto) => ({
+    return {
+        temporada: Number(dadosJolpica.MRData.RaceTable.season),
+        rodada: Number(lista.round),
+        lista
+    };
+}
+
+
+export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUltimaCorrida> {
+    const dados = await consultarResultadosCorrida(temporada);
+
+    const resultados: ResultadoPiloto[] = dados.lista.Results.map((piloto) => ({
         idPiloto: piloto.Driver.driverId,
         posicao: Number(piloto.position),
         nome: `${piloto.Driver.givenName} ${piloto.Driver.familyName}`,
@@ -71,17 +81,46 @@ export async function buscarUltimaCorrida(temporada: number): Promise<RespostaUl
     }));
 
     const ultimaCorrida: UltimaCorrida = {
-        nome: lista.raceName,
-        idCircuito: lista.Circuit.circuitId,
-        circuito: lista.Circuit.circuitName,
-        pais: lista.Circuit.Location.country,
-        data: lista.date,
+        nome: dados.lista.raceName,
+        idCircuito: dados.lista.Circuit.circuitId,
+        circuito: dados.lista.Circuit.circuitName,
+        pais: dados.lista.Circuit.Location.country,
+        data: dados.lista.date,
         resultados
-    }
+    };
 
     return {
-        temporada: Number(dadosJolpica.MRData.RaceTable.season),
-        rodada: Number(lista.round),
+        temporada: dados.temporada,
+        rodada: dados.rodada,
         corrida: ultimaCorrida
+    };
+}
+
+export async function buscarMelhorVolta(temporada: number): Promise<RespostaMelhorVolta> {
+    const dados = await consultarResultadosCorrida(temporada);
+
+    const piloto = dados.lista.Results.find(
+        (resultado) => resultado.FastestLap?.rank === "1"
+    );
+
+    if (!piloto || !piloto.FastestLap) {
+        throw new ErroAplicacao(
+            404,
+            `Nenhuma melhor volta disponível para ${temporada}.`
+        );
     }
+
+    const melhorVolta: MelhorVolta = {
+        idPiloto: piloto.Driver.driverId,
+        piloto: `${piloto.Driver.givenName} ${piloto.Driver.familyName}`,
+        equipe: piloto.Constructor.name,
+        tempo: piloto.FastestLap.Time.time,
+        volta: Number(piloto.FastestLap.lap),
+    };
+
+    return {
+        temporada: dados.temporada,
+        rodada: dados.rodada,
+        melhorVolta
+    };
 }

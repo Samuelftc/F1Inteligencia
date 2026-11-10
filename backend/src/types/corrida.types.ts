@@ -20,30 +20,57 @@ export interface RespostaUltimaCorrida {
     corrida: UltimaCorrida
 }
 
-export interface RespostaJolpicaUltimaCorrida {
+export interface MelhorVolta {
+    idPiloto: string,
+    piloto: string,
+    equipe: string,
+    tempo: string,
+    volta: number,
+}
+
+export interface RespostaMelhorVolta {
+    temporada: number;
+    rodada: number;
+    melhorVolta: MelhorVolta;
+}
+
+export interface RespostaJolpicaCorrida {
     MRData: {
         RaceTable: {
-            season: string,
+            season: string;
             Races: {
-                round: string,
-                raceName: string,
+                round: string;
+                raceName: string;
                 Circuit: {
-                    circuitId: string,
-                    circuitName: string,
-                },
-                date: string,
+                    circuitId: string;
+                    circuitName: string;
+                    Location: {
+                        country: string;
+                    };
+                };
+                date: string;
                 Results: {
-                    position: string,
+                    position: string;
                     Driver: {
-                        driverId: string,
-                        givenName: string,
-                        familyName: string,
-                    },
+                        driverId: string;
+                        givenName: string;
+                        familyName: string;
+                    };
+                    Constructor: {
+                        name: string;
+                    };
                     Time?: {
-                        time: string
-                    }
-                }[],
-            }[],
-        },
-    },
+                        time: string;
+                    };
+                    FastestLap?: {
+                        rank: string;
+                        lap: string;
+                        Time: {
+                            time: string;
+                        };
+                    };
+                }[];
+            }[];
+        };
+    };
 }
