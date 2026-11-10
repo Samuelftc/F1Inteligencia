@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// ULTIMA CORRIDA
 const melhorVoltaSchema = z.object({
     rank: z.string().regex(/^\d+$/),
     lap: z.string().regex(/^\d+$/),
@@ -46,4 +47,41 @@ export const respostaCorridaSchema = z.object({
             Races: z.array(ultimaCorridaSchema)
         })
     })
+});
+
+
+//  CORRIDAS
+const sessaoJolpicaSchema = z.object({
+    date: z.string(),
+    time: z.string().optional()
+});
+
+const corridaCalendarioSchema = z.object({
+    round: z.string().regex(/^\d+$/),
+    raceName: z.string(),
+    Circuit: z.object({
+        circuitId: z.string(),
+        circuitName: z.string(),
+        Location: z.object({
+            locality: z.string(),
+            country: z.string()
+        })
+    }),
+    date: z.string(),
+    time: z.string().optional(),
+    FirstPractice: sessaoJolpicaSchema.optional(),
+    SecondPractice: sessaoJolpicaSchema.optional(),
+    ThirdPractice: sessaoJolpicaSchema.optional(),
+    Qualifying: sessaoJolpicaSchema.optional(),
+    Sprint: sessaoJolpicaSchema.optional(),
+    SprintQualifying: sessaoJolpicaSchema.optional(),
+});
+
+export const respostaCalendarioSchema = z.object({
+    MRData: z.object({
+        RaceTable: z.object({
+            season: z.string().regex(/^\d+$/),
+            Races: z.array(corridaCalendarioSchema)
+        }),
+    }),
 });
