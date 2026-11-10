@@ -1,0 +1,12 @@
+export const imagensFundoCorridas: Record<string, string> = {
+    Australia: "/assets/images/paisagens/australia.png",
+    China: "/assets/images/paisagens/china.png",
+    Japan: "/assets/images/paisagens/japao.webp",
+    Bahrain: "/assets/images/paisagens/bahrein.png",
+    "Saudi Arabia": "/assets/images/paisagens/arabiaSaudita.png",
+    USA: "/assets/images/paisagens/miami.png",
+    Italy: "/assets/images/paisagens/emiliaRomagna.png",
+    Monaco: "/assets/images/paisagens/monaco.png",
+    Spain: "/assets/images/paisagens/espanha.png",
+    Canada: "/assets/images/paisagens/canada.webp"
+};

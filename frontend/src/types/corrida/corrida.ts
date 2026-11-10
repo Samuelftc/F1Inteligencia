@@ -1,8 +1,6 @@
-export interface Corrida {
-    id: number;
+export interface CorridaHome {
     ordem: number;
-    dataInicio: string;
-    dataFim: string;
+    periodo: string;
     imagemBandeira: string;
     pais: string;
     nomeGrandePremio: string;
