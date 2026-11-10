@@ -1,16 +1,18 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import '../../styles/home/Campeonato.css'
-// import { ultimaCorrida } from '../../data/ultimaCorrida'
 
 import { useEffect, useRef, useState } from 'react'
 import type { PilotoClassificacao, ConstrutorClassificacao } from '../../types/campeonato/campeonato'
 import { buscarClassificacaoPilotos, buscarClassificacaoConstrutores } from '../../services/campeonato/campeonato.service'
 import { adaptarPilotos, adaptarConstrutores } from '../../services/campeonato/campeonato.adapter'
 
-import type { UltimaCorrida } from '../../types/campeonato/ultimaCorrida'
+import type { UltimaCorrida, MelhorVolta } from '../../types/campeonato/ultimaCorrida'
 import { buscarUltimaCorrida } from '../../services/campeonato/ultimaCorrida.service'
 import { adaptarUltimaCorrida } from '../../services/campeonato/ultimaCorrida.adapter'
+
+import { buscarMelhorVolta } from '../../services/campeonato/melhorVolta.service'
+import { adaptarMelhorVolta } from '../../services/campeonato/melhorVolta.adapter'
 
 export default function Campeonato() {
 
@@ -31,6 +33,10 @@ export default function Campeonato() {
 
     const [carregandoUltimaCorrida, setCarregandoUltimaCorrida] = useState(true)
     const [erroUltimaCorrida, setErroUltimaCorrida] = useState<string | null>(null)
+
+    const [melhorVolta, setMelhorVolta] = useState<MelhorVolta | null>(null);
+    const [carregandoMelhorVolta, setCarregandoMelhorVolta] = useState(true);
+    const [erroMelhorVolta, setErroMelhorVolta] = useState<string | null>(null);
 
     // Busca as classificações quando o componente é montado.
     useEffect(() => {
@@ -109,6 +115,45 @@ export default function Campeonato() {
         }
 
         carregarUltimaCorrida()
+
+        // Cleanup: invalida esta execução quando o efeito é encerrado.
+        // Não cancela as requisições HTTP em andamento.
+        return () => {
+            ativo = false
+        }
+    }, [])
+
+    useEffect(() => {
+        // Impede atualizações de estado após a limpeza do efeito.
+        let ativo = true
+
+        async function carregarMelhorVolta() {
+            try {
+                const respostaMelhorVolta = await buscarMelhorVolta(2025)
+
+                // Ignora respostas caso o efeito já tenha sido encerrado.
+                if (!ativo) return
+
+                // Converte os dados da API para os modelos utilizados pelo frontend.
+                setMelhorVolta(adaptarMelhorVolta(respostaMelhorVolta.melhorVolta))
+
+                // Limpa possíveis erros anteriores após uma consulta bem-sucedida.
+                setErroMelhorVolta(null)
+            } catch (erro) {
+                if (!ativo) return
+
+                // Registra o erro técnico e apresenta uma mensagem amigável ao usuário.
+                console.error('Erro ao carregar a melhor volta:', erro)
+                setErroMelhorVolta('Não foi possível carregar a melhor volta.')
+            } finally {
+                // Finaliza o carregamento apenas se o efeito continuar ativo.
+                if (ativo) {
+                    setCarregandoMelhorVolta(false)
+                }
+            }
+        }
+
+        carregarMelhorVolta()
 
         // Cleanup: invalida esta execução quando o efeito é encerrado.
         // Não cancela as requisições HTTP em andamento.
@@ -420,27 +465,39 @@ export default function Campeonato() {
                     >
                         <h3>Melhor volta da corrida</h3>
 
-                        <div className="infosVoltaRapida">
-                            <img
-                                src={ultimaCorrida?.voltaRapida?.foto}
-                                alt=""
-                                height={50}
-                            />
+                        {carregandoMelhorVolta ? (
+                            <p>Carregando a melhor volta...</p>
+                        ) : erroMelhorVolta ? (
+                            <p role="alert">{erroMelhorVolta}</p>
+                        ) : melhorVolta ? (
+                            <>
+                                <div className="infosVoltaRapida">
 
-                            <div>
-                                <h4>{ultimaCorrida?.voltaRapida?.piloto}</h4>
-                                <p>{ultimaCorrida?.voltaRapida?.equipe}</p>
-                            </div>
-                        </div>
+                                    {melhorVolta.foto && (
+                                        <img
+                                            src={melhorVolta.foto}
+                                            alt=""
+                                            height={50}
+                                        />
+                                    )}
 
-                        <p className="tempoVoltaRapida">
-                            {ultimaCorrida?.voltaRapida?.tempo}
-                        </p>
+                                    <div>
+                                        <h4>{melhorVolta.piloto}</h4>
+                                        <p>{melhorVolta.equipe}</p>
+                                    </div>
+                                </div>
 
-                        <p className="infosVoltaComposto">
-                            Volta {ultimaCorrida?.voltaRapida?.volta} - Composto{' '}
-                            {ultimaCorrida?.voltaRapida?.composto}
-                        </p>
+                                <p className="tempoVoltaRapida">
+                                    {melhorVolta.tempo}
+                                </p>
+
+                                <p className="infosVoltaComposto">
+                                    Volta {melhorVolta.volta}
+                                </p>
+                            </>
+                        ) : (
+                            <p>Melhor volta indisponivel.</p>
+                        )}
                     </motion.div>
                 </motion.div>
             </div>

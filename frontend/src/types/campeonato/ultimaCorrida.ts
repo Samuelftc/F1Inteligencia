@@ -12,14 +12,12 @@ export interface UltimaCorrida {
     data: string;
     bandeira: string;
     resultados: ResultadoPiloto[];
-    voltaRapida?: VoltaRapida | undefined;
 }
 
-export interface VoltaRapida {
+export interface MelhorVolta {
     piloto: string;
     equipe: string;
     foto: string;
     tempo: string;
     volta: number;
-    composto: string;
 }
