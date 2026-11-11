@@ -14,7 +14,11 @@ import { adaptarUltimaCorrida } from '../../services/campeonato/ultimaCorrida.ad
 import { buscarMelhorVolta } from '../../services/campeonato/melhorVolta.service'
 import { adaptarMelhorVolta } from '../../services/campeonato/melhorVolta.adapter'
 
-export default function Campeonato() {
+interface CampeonatoProps {
+    temporada: number;
+}
+
+export default function Campeonato({ temporada }: CampeonatoProps) {
 
     const reduzirMovimento = useReducedMotion()
 
@@ -44,12 +48,17 @@ export default function Campeonato() {
         let ativo = true
 
         async function carregarCampeonatos() {
+            setCarregandoCampeonato(true);
+            setErroCampeonato(null);
+            setPilotos([]);
+            setConstrutores([]);
+
             try {
                 // Executa as duas requisições concorrentemente.
                 // Se uma falhar, o Promise.all rejeita a operação.
                 const [respostaPilotos, respostaConstrutores] = await Promise.all([
-                    buscarClassificacaoPilotos(2025),
-                    buscarClassificacaoConstrutores(2025)
+                    buscarClassificacaoPilotos(temporada),
+                    buscarClassificacaoConstrutores(temporada)
                 ])
 
                 // Ignora respostas caso o efeito já tenha sido encerrado.
@@ -82,15 +91,19 @@ export default function Campeonato() {
         return () => {
             ativo = false
         }
-    }, [])
+    }, [temporada])
 
     useEffect(() => {
         // Impede atualizações de estado após a limpeza do efeito.
         let ativo = true
 
         async function carregarUltimaCorrida() {
+            setCarregandoUltimaCorrida(true);
+            setErroUltimaCorrida(null);
+            setUltimaCorrida(null);
+
             try {
-                const respostaUltimaCorrida = await buscarUltimaCorrida(2025)
+                const respostaUltimaCorrida = await buscarUltimaCorrida(temporada)
 
                 // Ignora respostas caso o efeito já tenha sido encerrado.
                 if (!ativo) return
@@ -121,15 +134,19 @@ export default function Campeonato() {
         return () => {
             ativo = false
         }
-    }, [])
+    }, [temporada])
 
     useEffect(() => {
         // Impede atualizações de estado após a limpeza do efeito.
         let ativo = true
 
         async function carregarMelhorVolta() {
+            setCarregandoMelhorVolta(true);
+            setErroMelhorVolta(null);
+            setMelhorVolta(null);
+
             try {
-                const respostaMelhorVolta = await buscarMelhorVolta(2025)
+                const respostaMelhorVolta = await buscarMelhorVolta(temporada)
 
                 // Ignora respostas caso o efeito já tenha sido encerrado.
                 if (!ativo) return
@@ -160,7 +177,7 @@ export default function Campeonato() {
         return () => {
             ativo = false
         }
-    }, [])
+    }, [temporada])
 
     function navegarCampeonatos(indice: number) {
         const container = campeonatosRef.current
@@ -206,7 +223,7 @@ export default function Campeonato() {
             <div className="topoSection">
                 <div className="infosTopoSection">
                     <h2 id="titulo-campeonato" className="tituloSection">
-                        Campeonato 2025
+                        Campeonato {temporada}
                     </h2>
                     <p>Classificação de pilotos e construtores.</p>
                 </div>

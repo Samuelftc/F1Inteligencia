@@ -12,8 +12,11 @@ import "swiper/css";
 import 'swiper/css/navigation';
 import '../../styles/home/Corridas.css';
 import { useEffect, useState } from "react";
+interface CorridasHomeProps {
+    temporada: number;
+}
 
-export default function CorridasHome() {
+export default function CorridasHome({ temporada }: CorridasHomeProps) {
     const reduzirMovimento = useReducedMotion();
 
     const [corridas, setCorridas] = useState<CorridaHome[]>([])
@@ -27,7 +30,7 @@ export default function CorridasHome() {
         async function carregarCorridas() {
             try {
                 // Executa a requisição.
-                const respostaCorridas = await buscarCalendarioCorridas(2025);
+                const respostaCorridas = await buscarCalendarioCorridas(temporada);
 
                 // Ignora respostas caso o efeito já tenha sido encerrado.
                 if (!ativo) return;
@@ -58,14 +61,14 @@ export default function CorridasHome() {
         return () => {
             ativo = false
         }
-    }, [])
+    }, [temporada])
 
     return (
         <section className="corridasHome section" aria-labelledby="titulo-corridas">
             <div className="topoCorridas">
                 <div className="infosTopoCorridas">
-                    <h2 className="tituloCorridas" id="titulo-corridas">Corridas 2025</h2>
-                    <p>Calendário da temporada 2025</p>
+                    <h2 className="tituloCorridas" id="titulo-corridas">Corridas {temporada}</h2>
+                    <p>Calendário da temporada {temporada}</p>
                 </div>
 
                 <div className="acoesTopoCorridas">
@@ -138,7 +141,7 @@ export default function CorridasHome() {
                             }}
                             a11y={{
                                 enabled: true,
-                                containerMessage: 'Calendário de corridas da Fórmula 1 de 2025',
+                                containerMessage: `Calendário de corridas da Fórmula 1 de ${temporada}`,
                                 slideLabelMessage: 'Corrida {{index}} de {{slidesLength}}'
                             }}
                             className="swiperCorridas"
