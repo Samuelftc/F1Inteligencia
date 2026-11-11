@@ -8,5 +8,8 @@ export const imagensFundoCorridas: Record<string, string> = {
     Italy: "/assets/images/paisagens/emiliaRomagna.png",
     Monaco: "/assets/images/paisagens/monaco.png",
     Spain: "/assets/images/paisagens/espanha.png",
-    Canada: "/assets/images/paisagens/canada.webp"
+    Canada: "/assets/images/paisagens/canada.webp",
+    Azerbaijan: "/assets/images/paisagens/azerbaijao.png",
+    Austria: "/assets/images/paisagens/austria.png",
+    UK: "/assets/images/paisagens/reinoUnido.png",
 };

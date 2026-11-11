@@ -15,7 +15,7 @@ export const nomesCircuitos: Record<string, string> = {
     hungaroring: "Hungaroring",
     zandvoort: "Circuito de Zandvoort",
     monza: "Autódromo Nacional de Monza",
-    baku: "Circuito Urbano de Baku",
+    baku: "Circuito de Baku",
     marina_bay: "Circuito Urbano de Marina Bay",
     americas: "Circuito das Américas",
     rodriguez: "Autódromo Hermanos Rodríguez",

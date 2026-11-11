@@ -4,4 +4,5 @@ export const imagensConstrutores: Record<string, string> = {
     red_bull: "/assets/images/construtores/redBull.png",
     ferrari: "/assets/images/construtores/ferrari.png",
     williams: "/assets/images/construtores/williams.png",
+    aston_martin: "/assets/images/construtores/astonMartin.png",
 };

@@ -9,4 +9,7 @@ export const imagensCircuitos: Record<string, string> = {
     monaco: "/assets/images/circuitos/monaco.png",
     catalunya: "/assets/images/circuitos/barcelona.png",
     villeneuve: "/assets/images/circuitos/canada.png",
+    baku: "/assets/images/circuitos/baku.png",
+    red_bull_ring: "/assets/images/circuitos/redBullRing.png",
+    silverstone: "/assets/images/circuitos/silverstone.png",
 };

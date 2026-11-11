@@ -9,5 +9,8 @@ export const imagensPais: Record<string, string> = {
     Monaco: "/assets/images/bandeiras/monaco.png",
     Spain: "/assets/images/bandeiras/espanha.png",
     Canada: "/assets/images/bandeiras/canada.png",
+    Azerbaijan: "/assets/images/bandeiras/azerbaijao.png",
+    Austria: "/assets/images/bandeiras/austria.png",
+    UK: "/assets/images/bandeiras/reinoUnido.png",
     UAE: "/assets/images/bandeiras/abuDhabi.png"
 };
