@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import { buscarClassificacaoPilotos, buscarClassificacaoConstrutores } from "../services/campeonato.services.js";
-import { ErroAplicacao } from "../errors/ErroAplicacao.js";
+import { validarTemporada } from "../utils/validarTemporada.js";
 
 /**
  * Recebe a requisição HTTP para consultar
@@ -11,13 +11,7 @@ export async function obterClassificacaoPilotos(req: Request, res: Response): Pr
     const temporada = Number(req.params.temporada);
 
     // Valida se a temporada informada é válida.
-    if (
-        !Number.isInteger(temporada) ||
-        temporada < 1950 ||
-        temporada > new Date().getFullYear()
-    ) {
-        throw new ErroAplicacao(400, "Temporada inválida.");
-    }
+    validarTemporada(temporada);
 
     // Consulta a classificação por meio do Service.
     const classificacao = await buscarClassificacaoPilotos(temporada);
@@ -35,13 +29,7 @@ export async function obterClassificacaoConstrutores(req: Request, res: Response
 
     const temporada = Number(req.params.temporada);
 
-    if (
-        !Number.isInteger(temporada) ||
-        temporada < 1950 ||
-        temporada > new Date().getFullYear()
-    ) {
-        throw new ErroAplicacao(400, "Temporada inválida.");
-    }
+    validarTemporada(temporada);
 
     const classificacao = await buscarClassificacaoConstrutores(temporada);
 
