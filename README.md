@@ -3,29 +3,37 @@
 
 **F1 Intelligence** é uma plataforma web de análise de dados da Fórmula 1, desenvolvida para transformar informações de corridas, pilotos, equipes e temporadas em estatísticas, comparações e visualizações interativas.
 
-O projeto tem como objetivo proporcionar uma experiência moderna e intuitiva para fãs de automobilismo, combinando uma interface esportiva premium com ferramentas de análise de desempenho.
+O projeto busca proporcionar uma experiência moderna e intuitiva para fãs de automobilismo, combinando uma interface esportiva premium com ferramentas de análise de desempenho.
 
-A plataforma está em desenvolvimento e terá como temporada inicial a **Fórmula 1 de 2025**, com uma arquitetura planejada para suportar múltiplas temporadas.
+A temporada inicial é **2025**, com suporte arquitetural para consultar outras temporadas disponíveis nas fontes de dados utilizadas.
+
+> **Status:** Em desenvolvimento — MVP  
+> **Etapa atual:** Desenvolvimento da página de Campeonato.
+
+---
 
 ## Status do projeto
 
-**Em desenvolvimento — MVP**
-
-O desenvolvimento está dividido em etapas incrementais, começando pela interface da Home, seguida pela implementação do backend, integração de dados históricos e desenvolvimento das ferramentas analíticas.
+O desenvolvimento segue uma abordagem incremental: planejamento visual, implementação do frontend, desenvolvimento dos endpoints necessários, integração com dados reais e revisão técnica.
 
 ### Progresso
 
 - [x] Definição do escopo inicial do MVP
 - [x] Planejamento da identidade visual
 - [x] Desenvolvimento dos wireframes
-- [ ] Finalização do frontend da Home
-- [ ] Implementação da responsividade
-- [ ] Estruturação do backend
-- [ ] Modelagem do banco de dados
-- [ ] Integração com fontes de dados da Fórmula 1
-- [ ] Desenvolvimento do Race Explorer
-- [ ] Desenvolvimento do Driver Comparison
-- [ ] Testes e validações
+- [x] Implementação da estrutura visual da Home
+- [x] Responsividade da Home
+- [x] Revisões técnicas do frontend da Home
+- [x] Estruturação do backend com Node.js, Express e TypeScript
+- [x] Integração do backend com a Jolpica F1 API
+- [x] Implementação dos endpoints necessários para a Home
+- [x] Implementação de validação com Zod
+- [x] Implementação de cache em memória
+- [x] Tratamento centralizado de erros
+- [x] Testes manuais dos endpoints
+- [ ] Desenvolvimento da página de Campeonato
+- [ ] Desenvolvimento das páginas de corridas e análises
+- [ ] Testes automatizados
 - [ ] Deploy da primeira versão
 
 ---
@@ -36,40 +44,63 @@ O F1 Intelligence busca oferecer uma plataforma centralizada para consulta e an�
 
 Seus principais objetivos são:
 
-- Apresentar informações de campeonatos, pilotos e construtores.
+- Apresentar classificações de pilotos e construtores.
 - Disponibilizar calendários e resultados de corridas.
 - Permitir a exploração de dados históricos de Grandes Prêmios.
 - Comparar o desempenho de pilotos utilizando métricas estatísticas.
 - Apresentar dados por meio de gráficos e visualizações interativas.
 - Facilitar a compreensão de informações técnicas do automobilismo.
-- Construir uma base escalável para funcionalidades futuras.
+- Construir uma arquitetura organizada e preparada para expansão.
 
-Além dos objetivos funcionais, o projeto também possui caráter educacional, envolvendo práticas de desenvolvimento frontend, backend, integração de APIs, modelagem de dados e arquitetura de software.
+Além dos objetivos funcionais, o projeto possui caráter educacional, envolvendo desenvolvimento frontend, backend, integração de APIs, validação de dados e arquitetura de software.
 
 ---
 
-## Funcionalidades do MVP
-
-O MVP será composto por três módulos principais.
+## Funcionalidades
 
 ### 1. Home — Dashboard da temporada
 
-A Home será a página principal da plataforma, reunindo informações relevantes da temporada selecionada.
+A Home é a página principal da plataforma, reunindo informações relevantes da temporada selecionada.
+
+**Funcionalidades desenvolvidas:**
+
+- Interface esportiva premium.
+- Seleção de temporada.
+- Classificação do campeonato de pilotos.
+- Classificação do campeonato de construtores.
+- Informações da última corrida.
+- Destaque da melhor volta.
+- Calendário de Grandes Prêmios.
+- Navegação para outras áreas da plataforma.
+- Layout responsivo para diferentes dispositivos.
+- Componentes com recursos de acessibilidade.
+
+A página utiliza componentes React organizados por responsabilidade, com estilização CSS e elementos interativos.
+
+O backend disponibiliza os dados necessários para as principais seções da Home.
+
+### 2. Campeonato — Classificações
+
+**Status: Em desenvolvimento.**
+
+Página dedicada à visualização das classificações completas dos campeonatos de pilotos e construtores.
 
 **Funcionalidades previstas:**
 
-- Visão geral da temporada.
-- Classificação do campeonato de pilotos.
-- Classificação do campeonato de construtores.
-- Informações da última corrida da temporada selecionada.
-- Calendário de Grandes Prêmios.
-- Resultados e estatísticas em destaque.
-- Navegação para as ferramentas analíticas.
 - Seleção de temporada.
+- Alternância entre pilotos e construtores.
+- Classificação completa.
+- Destaque dos líderes.
+- Indicadores de pontos e vitórias.
+- Diferença de pontuação entre competidores.
+- Pesquisa e filtros locais.
+- Layout responsivo.
 
-A interface seguirá uma identidade visual esportiva, com destaque para fotografias, elementos gráficos e componentes informativos.
+Os endpoints necessários para consultar as classificações já estão disponíveis no backend.
 
-### 2. Race Explorer — Análise de corridas
+### 3. Race Explorer — Análise de corridas
+
+**Status: Planejado.**
 
 O Race Explorer permitirá explorar informações detalhadas de corridas históricas.
 
@@ -78,17 +109,19 @@ O Race Explorer permitirá explorar informações detalhadas de corridas histór
 - Seleção de temporada.
 - Seleção de Grande Prêmio.
 - Seleção de sessão.
-- Consulta dos resultados da corrida.
+- Consulta dos resultados.
 - Visualização dos tempos de volta.
 - Análise do ritmo dos pilotos.
-- Gráficos de desempenho ao longo da corrida.
+- Gráficos de desempenho.
 - Estatísticas de voltas e posições.
 
-O módulo utilizará dados históricos obtidos de fontes externas e processados pelo backend da aplicação.
+A implementação dependerá da disponibilidade e da granularidade dos dados fornecidos pelas fontes externas.
 
-### 3. Driver Comparison — Comparação de pilotos
+### 4. Driver Comparison — Comparação de pilotos
 
-O Driver Comparison permitirá comparar o desempenho de dois pilotos em uma mesma corrida.
+**Status: Planejado.**
+
+Ferramenta destinada à comparação estatística do desempenho de dois pilotos.
 
 **Funcionalidades previstas:**
 
@@ -98,40 +131,35 @@ O Driver Comparison permitirá comparar o desempenho de dois pilotos em uma mesm
 - Comparação do ritmo mediano.
 - Identificação da melhor volta.
 - Análise da diferença de desempenho.
-- Visualização de gráficos comparativos.
-
-O objetivo é permitir comparações baseadas em métricas objetivas, considerando a disponibilidade e as limitações dos dados históricos.
+- Gráficos comparativos.
 
 ---
 
 ## Tecnologias
 
-O projeto utiliza uma arquitetura planejada para separar as responsabilidades de apresentação, processamento e persistência de dados.
-
 ### Frontend
-
-Tecnologias utilizadas na implementação atual:
 
 | Tecnologia | Finalidade |
 |------------|------------|
-| React | Construção da interface |
+| React 19 | Construção da interface |
 | TypeScript | Tipagem estática |
 | Vite | Ambiente de desenvolvimento e build |
 | CSS3 | Estilização e responsividade |
 | Lucide React | Biblioteca de ícones |
+| Framer Motion | Animações e transições |
+| Swiper | Componentes de navegação e carrosséis |
 
 ### Backend
-
-Tecnologias previstas para as próximas etapas:
 
 | Tecnologia | Finalidade |
 |------------|------------|
 | Node.js | Ambiente de execução |
-| TypeScript | Desenvolvimento tipado |
-| Fastify | Construção da API REST |
-| PostgreSQL | Persistência dos dados |
-
-As tecnologias do backend poderão ser ajustadas conforme a evolução dos requisitos e as necessidades identificadas durante o desenvolvimento.
+| Express 5 | Construção da API REST |
+| TypeScript | Tipagem estática |
+| Zod | Validação dos dados externos |
+| Fetch API | Comunicação com a Jolpica |
+| dotenv | Configuração por variáveis de ambiente |
+| tsx | Execução do ambiente de desenvolvimento |
 
 ### Ferramentas
 
@@ -140,103 +168,145 @@ As tecnologias do backend poderão ser ajustadas conforme a evolução dos requi
 - Visual Studio Code
 - Postman
 - npm
+- ESLint
 
 ---
 
-## Fontes de dados
-
-O F1 Intelligence utilizará fontes externas para obter informações históricas da Fórmula 1.
-
-### OpenF1
-
-API voltada para dados de sessões, pilotos, voltas, posições e outras informações relacionadas às corridas.
-
-Documentação: https://openf1.org/
+## Fonte de dados
 
 ### Jolpica F1 API
 
-API para consulta de informações históricas, incluindo calendários, resultados, classificações e dados de campeonatos.
+A principal fonte de dados utilizada atualmente pelo backend é a **Jolpica F1 API**, sucessora da API Ergast.
+
+A integração permite consultar:
+
+- Classificações de pilotos.
+- Classificações de construtores.
+- Calendários de temporadas.
+- Resultados da última corrida de uma temporada.
+- Informações sobre a melhor volta de uma corrida.
 
 Documentação: https://api.jolpi.ca/
 
-### FastF1
+### Fontes consideradas para expansão
 
-Biblioteca Python voltada para obtenção e análise de dados históricos da Fórmula 1, incluindo informações de sessões e telemetria.
+**OpenF1**
+
+API com informações sobre sessões, pilotos, posições, voltas e outros dados relacionados às corridas.
+
+Documentação: https://openf1.org/
+
+**FastF1**
+
+Biblioteca Python voltada para análise de sessões históricas, tempos de volta e telemetria.
 
 Documentação: https://docs.fastf1.dev/
 
-**Observação:** essas fontes fazem parte do planejamento de integração. A utilização efetiva de cada uma dependerá da validação dos dados necessários, disponibilidade, limites de acesso e requisitos técnicos.
+> OpenF1 e FastF1 fazem parte das possibilidades de expansão. Não são dependências da implementação atual.
 
 ---
 
-## Arquitetura planejada
+## Arquitetura
 
-A aplicação seguirá uma arquitetura com separação entre frontend, backend, persistência e fontes externas.
+O projeto utiliza uma arquitetura separada entre frontend e backend.
 
 ```text
-                    F1 Intelligence
-                           |
-                    Frontend React
-                           |
-                      API REST
-                           |
-                 Backend Node.js
-                           |
-             +-------------+-------------+
-             |                           |
-         PostgreSQL                Integração de dados
-                                         |
-                              +----------+----------+
-                              |          |          |
-                            OpenF1     Jolpica     FastF1
+                  F1 Intelligence
+                         |
+                  Frontend React
+                         |
+                    API REST
+                         |
+                Backend Express
+                         |
+             +-----------+-----------+
+             |                       |
+        Controllers              Middlewares
+             |                       |
+          Services             Tratamento de erros
+             |
+      Validação com Zod
+             |
+       Cache em memória
+             |
+       Jolpica F1 API
 ```
 
 ### Frontend
 
-Responsável pela apresentação das informações, interação com o usuário, navegação e visualização dos dados.
+Responsável por:
+
+- Apresentação das informações.
+- Interação com o usuário.
+- Navegação entre páginas.
+- Gerenciamento dos estados da interface.
+- Consumo dos endpoints do backend.
+- Responsividade e acessibilidade.
 
 ### Backend
 
 Responsável por:
 
 - Disponibilizar endpoints REST.
-- Consultar e processar dados.
-- Aplicar regras de negócio.
-- Calcular estatísticas.
-- Validar parâmetros.
-- Tratar erros.
-- Integrar informações de diferentes fontes.
+- Validar parâmetros das requisições.
+- Consultar fontes externas.
+- Validar respostas utilizando Zod.
+- Transformar os dados para os contratos internos.
+- Armazenar respostas temporariamente em cache.
+- Centralizar o tratamento de erros.
+- Evitar requisições simultâneas duplicadas.
 
-### Banco de dados
+### Controllers
 
-O PostgreSQL será utilizado para armazenar dados estruturados e históricos relevantes para a aplicação.
+Os controllers recebem as requisições HTTP, validam os parâmetros necessários e delegam as operações aos services.
 
-Entre as entidades previstas estão:
+### Services
 
-- Temporadas
-- Pilotos
-- Equipes
-- Circuitos
-- Grandes Prêmios
-- Sessões
-- Resultados
-- Tempos de volta
+Os services concentram a comunicação com a Jolpica e o processamento das respostas.
 
-A modelagem definitiva será realizada durante a implementação do backend.
+Essa separação evita concentrar regras de negócio diretamente nas rotas.
 
-### Ingestão de dados
+### Validação com Zod
 
-Está prevista a implementação de um processo para importar, transformar, validar e persistir dados históricos.
+As respostas da API externa são validadas antes de serem transformadas e disponibilizadas aos consumidores.
 
-Esse processo permitirá reduzir consultas repetidas às fontes externas e padronizar as informações consumidas pelo frontend.
+Isso reduz o risco de processar estruturas inesperadas ou dados incompatíveis com os contratos utilizados pela aplicação.
+
+### Cache em memória
+
+O backend possui um mecanismo de cache utilizando `Map`.
+
+Características:
+
+- Armazenamento temporário de respostas.
+- Identificação por chaves específicas.
+- Controle de expiração por TTL.
+- Remoção de entradas expiradas quando consultadas.
+- Compartilhamento de requisições simultâneas para a mesma chave.
+
+O TTL atualmente utilizado nos principais services é de **24 horas**.
+
+O cache existe apenas na memória do processo Node.js e é perdido quando o servidor é reiniciado.
+
+### Tratamento de erros
+
+O backend utiliza uma classe personalizada `ErroAplicacao` e um middleware centralizado para padronizar respostas HTTP.
+
+Entre os cenários tratados estão:
+
+- Temporadas inválidas.
+- Dados não encontrados.
+- Falhas de comunicação com a Jolpica.
+- Respostas externas inválidas.
+- Erros inesperados do servidor.
 
 ---
 
 ## Estrutura do projeto
 
-A organização definitiva será documentada conforme a implementação das diferentes camadas.
+O projeto possui separação entre a aplicação React e a API Express.
 
-Uma possível estrutura futura é:
+A organização lógica das principais responsabilidades é:
 
 ```text
 F1Inteligencia/
@@ -244,29 +314,129 @@ F1Inteligencia/
 |-- frontend/
 |   |-- public/
 |   |-- src/
-|   |   |-- assets/
 |   |   |-- components/
 |   |   |-- pages/
-|   |   |-- services/
 |   |   |-- styles/
 |   |   |-- types/
-|   |   `-- utils/
+|   |   `-- ...
 |   `-- package.json
 |
 |-- backend/
 |   |-- src/
-|   |   |-- modules/
-|   |   |-- routes/
+|   |   |-- controllers/
 |   |   |-- services/
-|   |   |-- repositories/
-|   |   `-- config/
+|   |   |-- routes/
+|   |   |-- schemas/
+|   |   |-- types/
+|   |   |-- middlewares/
+|   |   |-- errors/
+|   |   |-- utils/
+|   |   |-- app.ts
+|   |   `-- server.ts
 |   `-- package.json
 |
 |-- README.md
-`-- .gitignore
+`-- ...
 ```
 
-**Importante:** essa estrutura representa uma proposta de organização futura e não necessariamente a estrutura atual do repositório.
+> A árvore representa a organização lógica dos módulos. Os diretórios e arquivos devem ser conferidos conforme a estrutura atual do repositório.
+
+---
+
+## API REST
+
+O backend disponibiliza endpoints organizados por recurso e temporada.
+
+### Campeonato
+
+**Classificação de pilotos**
+
+```http
+GET /api/campeonatos/:temporada/pilotos
+```
+
+Retorna a classificação dos pilotos de uma temporada, incluindo:
+
+- Posição.
+- Identificador do piloto.
+- Código.
+- Nome.
+- Nacionalidade.
+- Pontos.
+- Vitórias.
+- Construtores associados.
+
+**Classificação de construtores**
+
+```http
+GET /api/campeonatos/:temporada/construtores
+```
+
+Retorna a classificação das equipes, incluindo:
+
+- Posição.
+- Identificador do construtor.
+- Nome.
+- Nacionalidade.
+- Pontos.
+- Vitórias.
+
+### Corridas
+
+**Última corrida da temporada**
+
+```http
+GET /api/corridas/:temporada/ultima
+```
+
+Retorna informações da última corrida disponível para a temporada solicitada, incluindo circuito, data e resultados dos pilotos.
+
+**Melhor volta da última corrida**
+
+```http
+GET /api/corridas/:temporada/ultima/melhor-volta
+```
+
+Retorna as informações da melhor volta registrada nos resultados da última corrida disponível.
+
+**Calendário da temporada**
+
+```http
+GET /api/corridas/:temporada
+```
+
+Retorna o calendário de Grandes Prêmios, incluindo:
+
+- Rodada.
+- Nome da corrida.
+- Circuito.
+- País.
+- Localidade.
+- Data.
+- Horário, quando disponível.
+- Sessões do final de semana, quando disponíveis.
+
+### Validação de temporada
+
+O backend aceita temporadas representadas por números inteiros entre **1950 e o ano atual**.
+
+Uma temporada dentro desse intervalo não garante a existência de dados na fonte externa.
+
+### Códigos HTTP
+
+| Código | Significado |
+|--------|-------------|
+| 200 | Requisição realizada com sucesso |
+| 400 | Parâmetro inválido |
+| 404 | Dados não encontrados |
+| 500 | Erro interno do servidor |
+| 502 | Falha na integração com a API externa |
+
+### Exemplo de consulta
+
+```http
+GET http://localhost:3001/api/campeonatos/2025/pilotos
+```
 
 ---
 
@@ -274,9 +444,7 @@ F1Inteligencia/
 
 ### Pré-requisitos
 
-Para executar o frontend localmente, é necessário ter instalado:
-
-- Node.js em uma versão compatível com o projeto.
+- Node.js em versão compatível com as dependências.
 - npm.
 - Git.
 
@@ -286,95 +454,81 @@ Para executar o frontend localmente, é necessário ter instalado:
 git clone https://github.com/Samuelftc/F1Inteligencia.git
 ```
 
-### 2. Acessar o diretório
+### 2. Acessar o projeto
 
 ```bash
 cd F1Inteligencia
 ```
 
-### 3. Instalar as dependências
+### 3. Executar o frontend
 
-Execute o comando no diretório que contém o `package.json` do frontend:
+No diretório que contém o `package.json` do frontend:
 
 ```bash
 npm install
-```
-
-### 4. Iniciar o ambiente de desenvolvimento
-
-```bash
 npm run dev
 ```
 
-O Vite exibirá no terminal o endereço local em que a aplicação estará disponível.
-
-Normalmente, o endereço padrão é:
+O Vite normalmente disponibiliza a aplicação em:
 
 ```text
 http://localhost:5173
 ```
 
-### 5. Gerar a versão de produção
+### 4. Executar o backend
+
+Em outro terminal, acesse o diretório do backend:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+O servidor Express utiliza, por padrão, a porta `3001`, quando nenhuma outra porta é configurada.
+
+```text
+http://localhost:3001
+```
+
+### 5. Gerar o build
+
+Execute o comando de build no diretório correspondente.
 
 ```bash
 npm run build
 ```
 
-As instruções de execução do backend serão adicionadas após sua implementação.
-
----
-
-## API REST
-
-A API será desenvolvida durante a etapa de backend.
-
-A estrutura inicial poderá seguir endpoints organizados por temporada, corrida e piloto.
-
-### Exemplos de endpoints planejados
-
-```http
-GET /api/seasons
-GET /api/seasons/:year
-GET /api/seasons/:year/drivers
-GET /api/seasons/:year/constructors
-GET /api/seasons/:year/standings
-GET /api/seasons/:year/races
-
-GET /api/races/:raceId
-GET /api/races/:raceId/results
-GET /api/races/:raceId/laps
-
-GET /api/races/:raceId/drivers/:driverId/laps
-```
-
-Esses endpoints são propostas de contrato e poderão ser modificados conforme a modelagem e os requisitos funcionais.
+O frontend e o backend possuem processos de build independentes.
 
 ---
 
 ## Temporadas
 
-A temporada inicial do MVP será **2025**.
+A temporada inicial utilizada na plataforma é **2025**.
 
-A plataforma será desenvolvida para permitir a inclusão de temporadas adicionais sem alterações significativas na estrutura principal.
+O backend foi estruturado para consultar diferentes temporadas por meio de parâmetros nas rotas.
 
-Temporadas previstas para expansão:
+Entre as temporadas previstas para navegação estão:
 
+- 2025
 - 2024
-- 2026
-- Outras temporadas históricas compatíveis com as fontes utilizadas
+- 2023
 
-A disponibilidade de determinadas métricas poderá variar de acordo com a temporada e a fonte consultada.
+A arquitetura também permite solicitar outras temporadas compatíveis com os dados disponibilizados pela Jolpica.
+
+A disponibilidade de determinadas informações pode variar conforme a temporada.
 
 ---
 
 ## Responsividade
 
-A interface será desenvolvida com abordagem desktop-first, considerando o uso de tabelas, gráficos e componentes analíticos.
+A interface utiliza uma abordagem desktop-first, com adaptações para diferentes tamanhos de tela.
 
-O projeto deverá oferecer suporte aos seguintes dispositivos:
+Resoluções utilizadas como referência:
 
-| Dispositivo | Resolução de referência |
-|-------------|-------------------------|
+| Dispositivo | Resolução |
+|-------------|-----------|
 | Desktop | 1920 × 1080 |
 | Notebook | 1366 × 768 |
 | Notebook | 1440 × 900 |
@@ -382,37 +536,73 @@ O projeto deverá oferecer suporte aos seguintes dispositivos:
 | Smartphone | 390 × 844 |
 | Smartphone | 360 × 800 |
 
-As resoluções são referências de teste, não limitações fixas da interface.
+As resoluções são referências de desenvolvimento e teste, não limitações fixas da aplicação.
 
-Os componentes serão adaptados conforme o espaço disponível, priorizando legibilidade, acessibilidade e usabilidade.
+O projeto prioriza:
+
+- Legibilidade.
+- Navegação intuitiva.
+- Organização visual.
+- Acessibilidade.
+- Adaptação de tabelas e componentes.
+- Consistência entre dispositivos.
 
 ---
 
 ## Roadmap
 
-### Fase 1 — Interface da Home
+### Fase 1 — Home
 
 - [x] Definição da identidade visual
 - [x] Planejamento dos wireframes
-- [x] Configuração inicial do projeto
-- [ ] Implementação completa da Home
-- [ ] Responsividade para notebooks
-- [ ] Responsividade para tablets
-- [ ] Responsividade para smartphones
-- [ ] Revisão técnica do frontend
+- [x] Configuração inicial do frontend
+- [x] Desenvolvimento da interface
+- [x] Implementação dos componentes principais
+- [x] Responsividade para notebooks
+- [x] Responsividade para dispositivos móveis
+- [x] Revisão técnica dos componentes
 
-### Fase 2 — Backend e integração de dados
+### Fase 2 — Backend da Home
 
-- [ ] Configuração do ambiente Node.js
-- [ ] Estruturação da API com Fastify
-- [ ] Modelagem do banco PostgreSQL
-- [ ] Integração com fontes externas
-- [ ] Implementação da ingestão de dados históricos
-- [ ] Criação dos endpoints necessários para a Home
-- [ ] Integração do frontend com a API
-- [ ] Substituição dos dados mockados
+- [x] Configuração do ambiente Node.js
+- [x] Estruturação da API com Express
+- [x] Implementação de controllers e services
+- [x] Criação das rotas REST
+- [x] Integração com a Jolpica
+- [x] Validação de respostas com Zod
+- [x] Validação dos parâmetros de temporada
+- [x] Tratamento centralizado de erros
+- [x] Implementação de cache em memória
+- [x] Deduplicação de requisições simultâneas
+- [x] Endpoints de classificação de pilotos
+- [x] Endpoints de classificação de construtores
+- [x] Endpoint de última corrida
+- [x] Endpoint de melhor volta
+- [x] Endpoint de calendário
+- [x] Testes manuais dos endpoints
+- [x] Revisão técnica do backend
 
-### Fase 3 — Race Explorer
+### Fase 3 — Integração da Home
+
+- [x] Validação final do consumo dos endpoints pelo React
+- [x] Revisão dos estados de carregamento e erro
+- [x] Validação dos dados apresentados na interface
+- [x] Testes de integração
+
+### Fase 4 — Campeonato
+
+- [x] Definição inicial do escopo
+- [x] Planejamento visual
+- [ ] Desenvolvimento do frontend
+- [ ] Implementação da classificação completa
+- [ ] Indicadores estatísticos
+- [ ] Alternância entre pilotos e construtores
+- [ ] Seleção de temporada
+- [ ] Responsividade
+- [ ] Integração com o backend
+- [ ] Revisão técnica
+
+### Fase 5 — Race Explorer
 
 - [ ] Desenvolvimento da interface
 - [ ] Seleção de corridas e sessões
@@ -421,23 +611,23 @@ Os componentes serão adaptados conforme o espaço disponível, priorizando legi
 - [ ] Implementação dos gráficos
 - [ ] Integração com o backend
 
-### Fase 4 — Driver Comparison
+### Fase 6 — Driver Comparison
 
 - [ ] Desenvolvimento da interface
 - [ ] Seleção dos pilotos
 - [ ] Implementação das métricas comparativas
 - [ ] Cálculo de ritmo médio e mediano
-- [ ] Implementação dos gráficos comparativos
+- [ ] Implementação dos gráficos
 - [ ] Integração com o backend
 
-### Fase 5 — Finalização do MVP
+### Fase 7 — Finalização do MVP
 
 - [ ] Testes funcionais
+- [ ] Testes automatizados
 - [ ] Validação dos cálculos estatísticos
-- [ ] Tratamento de erros
-- [ ] Revisão de responsividade
+- [ ] Revisão geral de responsividade
 - [ ] Otimizações de desempenho
-- [ ] Documentação da API
+- [ ] Documentação final da API
 - [ ] Deploy do frontend
 - [ ] Deploy do backend
 - [ ] Publicação da primeira versão
@@ -448,14 +638,14 @@ Os componentes serão adaptados conforme o espaço disponível, priorizando legi
 
 O MVP será considerado concluído quando:
 
-1. A Home apresentar informações reais e consistentes da temporada 2025.
-2. O usuário conseguir consultar a classificação de pilotos e construtores.
+1. A Home apresentar informações reais e consistentes da temporada selecionada.
+2. O usuário conseguir consultar classificações completas de pilotos e construtores.
 3. O calendário e os resultados das corridas estiverem disponíveis.
 4. O Race Explorer permitir explorar dados históricos de corridas.
-5. O Driver Comparison permitir comparar dois pilotos utilizando métricas estatísticas.
+5. O Driver Comparison permitir comparar pilotos utilizando métricas estatísticas.
 6. O frontend estiver integrado ao backend.
 7. A aplicação funcionar adequadamente nos principais tamanhos de tela.
-8. Os dados exibidos forem validados.
+8. Os dados externos forem validados antes de serem utilizados.
 9. A aplicação estiver publicada e acessível.
 10. O repositório possuir documentação suficiente para instalação e execução.
 
@@ -463,15 +653,13 @@ O MVP será considerado concluído quando:
 
 ## Funcionalidades futuras
 
-Após a conclusão do MVP, poderão ser desenvolvidas funcionalidades adicionais.
-
 ### Strategy Lab
 
 Ferramentas para análise de estratégias de corrida, incluindo paradas nos boxes, compostos de pneus e evolução de desempenho.
 
 ### Telemetry Lab
 
-Visualização de dados de telemetria, como velocidade, aceleração, frenagem e outros parâmetros disponíveis.
+Visualização de dados de telemetria, como velocidade, aceleração e frenagem, conforme a disponibilidade dos dados.
 
 ### Live Race Center
 
@@ -485,29 +673,37 @@ Possíveis expansões incluem:
 - Estatísticas históricas de pilotos e equipes.
 - Análise de consistência.
 - Evolução de desempenho.
+- Comparação de estratégias.
 - Visualizações estatísticas avançadas.
 
-Essas funcionalidades não fazem parte do escopo inicial do MVP.
+### Persistência de dados
+
+Uma futura etapa poderá incluir banco de dados para armazenar informações históricas e resultados processados.
+
+A escolha da tecnologia e a modelagem serão definidas conforme os requisitos dessa evolução.
 
 ---
 
 ## Qualidade e boas práticas
 
-O desenvolvimento buscará seguir princípios de organização, manutenção e confiabilidade.
+O desenvolvimento segue princípios de organização, manutenção e confiabilidade.
 
-Entre as práticas previstas estão:
+Entre as práticas adotadas estão:
 
 - Componentização e reutilização de código.
 - Tipagem estática com TypeScript.
 - Separação de responsabilidades.
 - Padronização de nomenclatura.
 - Validação de dados externos.
-- Tratamento de erros.
+- Tratamento centralizado de erros.
 - Organização das regras de negócio.
 - Versionamento com Git.
 - Commits descritivos.
+- Revisões técnicas incrementais.
 - Documentação progressiva.
-- Testes de funcionalidades e cálculos estatísticos.
+- Testes manuais dos endpoints.
+
+Testes automatizados e validações adicionais fazem parte das próximas etapas.
 
 ---
 
